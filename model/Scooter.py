@@ -2,10 +2,11 @@
 """
 Defines the User class.
 """
-from model.BaseMachine import BaseMachine
+from model.BaseMachine import BaseMachine, Base
+from sqlalchemy import Column, String
 
 
-class Scooter(BaseMachine):
+class Scooter(BaseMachine, Base):
     """
     Represent a Scooter.
 
@@ -17,12 +18,12 @@ class Scooter(BaseMachine):
         detail (str): The detail of the Scooter.
         img = ??
     """
-
-    name = ""
-    code_model = ""
-    Speed_max = ""
-    Puissance = ""
-    detail = ""
+    __tablename__ = 'scooter'
+    name = Column(String(128), nullable=False)
+    code_model = Column(String(128), nullable=False)
+    Speed_max = Column(String(128), nullable=False)
+    Puissance = Column(String(128), nullable=False)
+    detail = Column(String(128), nullable=False)
     # image = ??
 
     def __init__(self, *args, **kwargs):
