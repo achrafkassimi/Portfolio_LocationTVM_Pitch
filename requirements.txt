@@ -1,3 +1,0 @@
-MySQL==8.0
-SQLAlchemy==1.4.x
-pycodestyle==2.8.*
