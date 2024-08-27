@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <title>LocatiomTVM</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+      integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
+      crossorigin="anonymous"
+    />
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"
+      integrity="sha512-z4OUqw38qNLpn1libAN9BsoDx6nbNFio5lA6CuTp9NlK83b89hgyCVq+N5FdBJptINztxn1Z3SaKSKUS5UP60Q=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css"
+    />
+
+    <script
+      src="https://code.jquery.com/jquery-1.12.4.min.js"
+      integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
+      crossorigin="anonymous"
+    ></script>
+  </head>
+
+  <body>
+    <nav class="nav">
+      <div class="container flex1">
+        <div class="logo">
+          <img src="image/logo.png" alt="" width="200" />
+        </div>
+        <div class="menu">
+          <div class="main_list" id="mainListDiv">
+            <ul>
+              <li><a href="#">Home</a></li>
+              <li><a href="#">Blog</a></li>
+              <li><a href="#">Reserver</a></li>
+              <li><a href="#">Offer</a></li>
+              <li><a href="#">Tarif</a></li>
+              <li><a href="#">About Us</a></li>
+              <li><a href="#">FAQ</a></li>
+              <li><a href="#">Contact</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="media_button">
+          <i class="fas fa-bars" id="mediaButton"></i>
+        </div>
+
+        <div class="account flex1">
+          <i class="far fa-unlock-alt"></i>
+          <p>Login / Register</p>
+        </div>
+      </div>
+    </nav>
+    <script type="text/javascript">
+      var mainListDiv = document.getElementById("mainListDiv");
+      mediaButton = document.getElementById("mediaButton");
+
+      mediaButton.onclick = function () {
+        mainListDiv.classList.toggle("show_list");
+        mediaButton.classList.toggle("active");
+      };
+    </script>
+
+    <section class="home">
+      <div class="content flex">
+        <div class="left">
+          <h2>Location de Trottinette Electrique</h2>
+          <p>Reserver votre Session Avec Guide ou en libre service.</p>
+
+          <div class="button flex">
+            <button type="button" class="btn1 btn1-Reservez-vous">
+              Reservez-vous
+            </button>
+          </div>
+        </div>
+
+        <div class="right">
+          <div class="ani_image">
+            <img src="image/photo1.png" alt="" width="750" height="600" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="scontainer grid">
+        <div class="box">
+          <div class="logo">
+            <img src="image/logo.png" alt="" width="200" />
+          </div>
+          <h3>+212701106060</h3>
+          <small>Email : dev.prognft@gmail.com</small>
+        </div>
+
+        <div class="box">
+          <h3>Customer Services</h3>
+          <div class="flex1">
+            <ul>
+              <li>Help</li>
+              <li>Contact Us</li>
+              <li>Warranty</li>
+              <li>Terms & Conditions</li>
+            </ul>
+            <ul>
+              <li>My Account</li>
+              <li>Arder Status</li>
+              <li>Payment</li>
+              <li>Oders</li>
+              <li>Cancellation</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="box">
+          <h3>Let's stay in touch</h3>
+          <div class="input flex1">
+            <input type="email" placeholder="Email Address" />
+            <i class="far fa-long-arrow-right"></i>
+          </div>
+          <div class="social_media">
+            <i class="fab fa-facebook-f"></i>
+            <i class="fab fa-instagram"></i>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      anime({
+        targets: ".ani_image",
+        translateX: 70,
+        loop: true,
+        direction: "alternate",
+        easing: "easeInOutSine",
+      });
+    </script>
+  </body>
+</html>
