@@ -23,7 +23,7 @@ class Scooter(BaseMachine, Base):
     code_model = Column(String(128), nullable=False)
     Speed_max = Column(String(128), nullable=False)
     Puissance = Column(String(128), nullable=False)
-    detail = Column(String(128), nullable=False)
+    detail = Column(String(256), nullable=False)
     # image = ??
 
     def __init__(self, *args, **kwargs):
