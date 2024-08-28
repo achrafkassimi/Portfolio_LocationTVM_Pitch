@@ -21,18 +21,18 @@ class DBStorage:
 
     def __init__(self):
         """Instantiate a DBStorage object"""
-        Location_TVM_MYSQL_USER = getenv('Location_TVM_MYSQL_USER')
-        Location_TVM_MYSQL_PWD = getenv('Location_TVM_MYSQL_PWD')
-        Location_TVM_MYSQL_HOST = getenv('Location_TVM_MYSQL_HOST')
-        Location_TVM_MYSQL_DB = getenv('Location_TVM_MYSQL_DB')
-        Location_TVM_ENV = getenv('Location_TVM_ENV')
+        Location_TVM_MYSQL_USER = "root" # getenv('Location_TVM_MYSQL_USER')
+        Location_TVM_MYSQL_PWD = "" # getenv('Location_TVM_MYSQL_PWD')
+        Location_TVM_MYSQL_HOST = "localhost" # getenv('Location_TVM_MYSQL_HOST')
+        Location_TVM_MYSQL_DB = "location_tvm_dev_db"# getenv('Location_TVM_MYSQL_DB')
+        # Location_TVM_ENV = getenv('Location_TVM_ENV')
         self.__engine = create_engine('mysql+mysqldb://{}:{}@{}/{}'.
                                       format(Location_TVM_MYSQL_USER,
                                              Location_TVM_MYSQL_PWD,
                                              Location_TVM_MYSQL_HOST,
                                              Location_TVM_MYSQL_DB))
-        if Location_TVM_ENV == "test":
-            Base.metadata.drop_all(self.__engine)
+        # if Location_TVM_ENV == "test":
+        #     Base.metadata.drop_all(self.__engine)
 
     def all(self, cls=None):
         """query on the current database session"""
