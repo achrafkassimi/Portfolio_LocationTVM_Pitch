@@ -1,0 +1,129 @@
+/* header section */
+html{
+  width: 100%;
+  color: white;
+  
+}
+.main {
+  background-image: linear-gradient(to right, #0e106b6e 30%, #00000088), url('../assets/Frontend_Assets/pedro-pereira-pplGVkdKQbY-unsplash.jpg');
+  background-position: center;
+  color: white;
+  background-size: cover;
+  
+}
+
+.main.home-active {
+  height: 100vh;
+}
+
+.main:hover{
+  background-image: linear-gradient(to right, #01022de5 30% , transparent),url('../assets/Frontend_Assets/pedro-pereira-pplGVkdKQbY-unsplash.jpg'); 
+  transition: 3.10s;
+}
+.Navbar{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #aae0f8c9;
+    box-shadow: 1px 3px 15px rgba(0,0,0,0.09);
+    position: fixed;
+    z-index: 1;
+    min-width: 100%;
+    height: 5.4rem;
+    
+  }
+.line{
+  height: 1px;
+  width: 80%;
+  margin: 0 auto;
+  background-color: rgba(245, 227, 204, 0.674);
+}
+  .nav{
+    display: flex;
+    align-items: center;
+    justify-content: space-around; 
+    
+}
+.nav #nav_menu{
+  display: flex;
+  align-items: center;
+  gap: 4rem;
+}
+ 
+  ul li{
+    display: inline-block;
+    padding: 20px;
+    text-align: center;
+  }
+  ul li a{
+    text-decoration: none;
+    color: white;
+    transition: .2s;
+  }
+  .nav_menu hr{
+    border: none;
+    width: 80px;
+    height: 3px;
+    border: 5px;
+    color: aqua;
+
+  }
+  ul li a:hover, .Active{
+    color: var(--primary-color);
+    border-bottom: 1px solid var(--primary-color);
+    transform: scale(1.5);
+    color: rgba(137, 43, 226, 0.74);
+  }
+ 
+  .nav_login_card #btn{
+    width: 7rem;
+    height: 2.5rem;
+  }
+  li {
+    list-style: none;
+  }
+  .logo {
+    width: 10rem;
+  }
+  
+  .logo img {
+    width: 100%;
+    height: 3rem;
+    object-fit: cover;
+  }
+  .nav_count{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: -1.5rem;
+    margin-left: -4.2rem;
+    background: green;
+    border-radius: 30px;
+    color: azure;
+    width: 19px;
+    height: 1.3rem;
+  }
+  .content.enabled {
+    /* Your styles for when the content is enabled */
+    display: block; 
+    width: 50%;
+    margin-left: 6%;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    /* Example: Ensure the content is visible */
+    /* Add other styles as needed */
+  }
+  
+  .content {
+    display: none; /* Example: Hide content by default */
+  }
+  
+.content p{
+  color: white;
+}
+
+#title{
+    font-size: 60px;
+}
+  
