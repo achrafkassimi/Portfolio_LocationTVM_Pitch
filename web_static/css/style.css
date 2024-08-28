@@ -24,7 +24,6 @@
   justify-content: space-between;
 }
 
-/*----------header--------*/
 nav {
   height: 10vh;
   line-height: 10vh;
@@ -107,8 +106,7 @@ nav li a:hover {
   }
 }
 
-/*----------header--------*/
-/*----------home--------*/
+
 .left {
   width: 35%;
 }
@@ -180,8 +178,7 @@ button {
   margin: 20px 0 20px 0;
 }
 
-/*----------home--------*/
-/*----------latest--------*/
+
 .top {
   margin-top: 100px;
 }
@@ -310,8 +307,7 @@ button {
   margin-top: 20px;
 }
 
-/*----------latest--------*/
-/*----------slider--------*/
+
 ul {
   list-style: none;
 }
@@ -366,8 +362,7 @@ ul {
   color: #71ec6e;
 }
 
-/*----------slider--------*/
-/*----------Popular--------*/
+
 .Popular {
   color: black;
 }
@@ -376,8 +371,7 @@ ul {
   background: none;
 }
 
-/*----------Popular--------*/
-/*----------wrapper--------*/
+
 .wrapper {
   background-image: url("../image/back.jpg");
   background-size: cover;
@@ -419,14 +413,12 @@ ul {
   font-weight: 400;
 }
 
-/*----------wrapper--------*/
-/*----------Assesories--------*/
+
 .Assesories {
   margin-top: 25%;
 }
 
-/*----------Assesories--------*/
-/*----------shipping--------*/
+
 .shipping {
   padding: 50px;
   background: #37b234;
@@ -455,8 +447,7 @@ ul {
   line-height: 20px;
 }
 
-/*----------shipping--------*/
-/*----------footer--------*/
+
 footer {
   background: black;
 }
@@ -508,9 +499,9 @@ footer .social_media i {
   color: grey;
 }
 
-/*----------footer--------*/
+
 @media only screen and (max-width: 768px) {
-  /*----------home--------*/
+  
   .home .content {
     flex-direction: column;
   }
@@ -534,8 +525,7 @@ footer .social_media i {
     height: 100%;
   }
 
-  /*----------home--------*/
-  /*----------latest--------*/
+  
   .heading button {
     left: 30%;
   }
@@ -556,14 +546,13 @@ footer .social_media i {
     padding: 10px;
   }
 
-  /*----------latest--------*/
-  /*----------slider--------*/
+  
   .slider .item {
     flex-direction: column;
     flex-direction: column-reverse;
   }
 
-  /*----------slider--------*/
+  
   .shipping .grid {
     grid-template-columns: repeat(1, 1fr);
   }
@@ -599,3 +588,4 @@ footer .social_media i {
     padding: 50px 0 50px 0;
   }
 }
+
