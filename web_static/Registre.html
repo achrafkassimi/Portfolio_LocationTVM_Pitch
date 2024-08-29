@@ -4,26 +4,60 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Registre</title>
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="/web_static/css/style.css" />
   </head>
   <body>
+    <nav class="nav">
+      <div class="container flex1">
+        <div class="logo">
+          <img src="image/logo.png" alt="" width="200" />
+        </div>
+        <div class="menu">
+          <div class="main_list" id="mainListDiv">
+            <ul>
+              <li><a href="#">Home</a></li>
+              <li><a href="#">Blog</a></li>
+              <li><a href="#">Reserver</a></li>
+              <li><a href="#">Offer</a></li>
+              <li><a href="#">Tarif</a></li>
+              <li><a href="#">About Us</a></li>
+              <li><a href="#">FAQ</a></li>
+              <li><a href="#">Contact</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="media_button">
+          <i class="fas fa-bars" id="mediaButton"></i>
+        </div>
+
+        <div class="account flex1">
+          <i class="far fa-unlock-alt"></i>
+          <button >
+            <p><a href="Login.html">Login</a></p>
+          </button>
+          <button>
+            <p><a href="Registre.html">Registre</a></p>
+          </button>
+        </div>
+      </div>
+    </nav>
     <div class="form-wrapper">
       <div class="form-container">
         <div class="form hidden" id="register-form">
-          <h2>Register</h2>
+          <h1 style="text-decoration-line: underline;">Register</h1>
           <form id="register">
             <div class="input-group">
-              <label for="register-name">Full Name</label>
+              <label for="register-name">Full Name:</label>
               <input type="text" id="register-name" name="name" required />
               <span class="error" id="register-name-error"></span>
             </div>
             <div class="input-group">
-              <label for="register-email">Email</label>
+              <label for="register-email">Email:</label>
               <input type="email" id="register-email" name="email" required />
               <span class="error" id="register-email-error"></span>
             </div>
             <div class="input-group">
-              <label for="register-password">Password</label>
+              <label for="register-password">Password:</label>
               <input
                 type="password"
                 id="register-password"
@@ -32,8 +66,8 @@
               />
               <span class="error" id="register-password-error"></span>
             </div>
-            <button type="submit">Register</button>
-            <p>
+            <button id="btn_login" type="submit">Register</button>
+            <p id="dnt_account">
               Already have an account?
               <a href="#" onclick="showLogin()">Login here</a>
             </p>
@@ -41,6 +75,49 @@
         </div>
       </div>
     </div>
+
+    <footer>
+      <div class="scontainer grid">
+        <div class="box">
+          <div class="logo">
+            <img src="image/logo.png" alt="" width="200" />
+          </div>
+          <h3>+212701106060</h3>
+          <small>Email : dev.prognft@gmail.com</small>
+        </div>
+
+        <div class="box">
+          <h3>Customer Services</h3>
+          <div class="flex1">
+            <ul>
+              <li>Help</li>
+              <li>Contact Us</li>
+              <li>Warranty</li>
+              <li>Terms & Conditions</li>
+            </ul>
+            <ul>
+              <li>My Account</li>
+              <li>Arder Status</li>
+              <li>Payment</li>
+              <li>Oders</li>
+              <li>Cancellation</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="box">
+          <h3>Let's stay in touch</h3>
+          <div class="input flex1">
+            <input type="email" placeholder="Email Address" />
+            <i class="far fa-long-arrow-right"></i>
+          </div>
+          <div class="social_media">
+            <i class="fab fa-facebook-f"></i>
+            <i class="fab fa-instagram"></i>
+          </div>
+        </div>
+      </div>
+    </footer>
 
     <script src="script.js"></script>
   </body>

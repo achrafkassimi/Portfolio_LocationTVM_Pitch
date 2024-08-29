@@ -16,6 +16,8 @@ from model.Bike import Bike
 class LocationTVM_Command(cmd.Cmd):
     """
     Attributes LocationTVM_Command console class
+    prompt 
+    classes
     """
     prompt = "(Location_TVM) "
     valid_classes = ["BaseMachine", "Scooter", "Motor", "Bike"]
@@ -40,7 +42,8 @@ class LocationTVM_Command(cmd.Cmd):
 
     def do_how(self, line): # , line for print sum line
         """
-        function help = just help name function "help create" ==> comment in ths function
+        function help
+        just help name function "help create" ==> comment in ths function
         """
         print("quit command to exit the program")
         print("EOF (Ctrl+D) signal to exit the program")
@@ -50,20 +53,16 @@ class LocationTVM_Command(cmd.Cmd):
         # print("")
         # print("")
         # print("")
-    #     print('\n').join([ 'greet [person]',
-    #                        'Greet the named person',
-    #                        ])
-    #     return True
     
     def do_create(self, arg):
         """
-        Create a new instance of BaseModel and save it to the DB data mysql
+        Create a new instance and save it to the DB data mysql
         Usage:      create <class_name> parameter1=".." parameter2=".." ...
         example:    create Bike name="" code_model="" Speed_max="" Puissance="" detail=""
         """
         try:
             class_name = arg.split(" ")[0]
-            print(class_name)
+            # print(class_name)
             if len(class_name) == 0:
                 print("** class name missing **")
                 return
@@ -85,14 +84,14 @@ class LocationTVM_Command(cmd.Cmd):
                     except (SyntaxError, NameError):
                         continue
                 kwargs[key] = value
-            print(kwargs)
+            # print(kwargs)
             
             if kwargs == {}:
                 new_instance = eval(class_name)()
             else:
                 new_instance = eval(class_name)(**kwargs)
             storage.new(new_instance)
-            print(new_instance.id)
+            # print(new_instance.id)
             storage.save()
             
         except ValueError:
@@ -101,26 +100,100 @@ class LocationTVM_Command(cmd.Cmd):
 
     def do_show(self, arg):
         """
-        Show the string representation of an instance
+        Show the object representation of model instance by id.
+        Usage: show <class_name> <id>
+        example: show Bike d52a014c-7652-49e2-bf49-b587bb79f5d7
         """
-        pass
+        commands = shlex.split(arg)
+        # print(commands)
+        if len(commands) == 0:
+            print("** class name missing **")
+        elif commands[0] not in self.valid_classes:
+            print("** class doesn't exist **")
+        elif len(commands) < 2:
+            print("** instance id missing **")
+        else:
+            objects = storage.all()
+            # print(objects)
+            key = "{}.{}".format(commands[0], commands[1])
+            if key in objects:
+                # print(objects[key])
+                obj_vars = vars(objects[key])
+                for k, v in obj_vars.items():
+                    # print(k, v)
+                    print('{} : {}'.format(k, v))
+            else:
+                print("** no instance found **")
 
     def do_destroy(self, arg):
         """
-        Delete an instance based on the class name and id
+        Delete an instance based on the class name and id.
+        Usage: destroy <class_name> <id>
+        example: destroy Bike 78013a16-bf8a-4cd3-96ad-b410003ce651
         """
-        pass
+        commands = shlex.split(arg)
+        # print(commands) # ['Bike', '78013a16-bf8a-4cd3-96ad-b410003ce651']
+        if len(commands) == 0:
+            print("** class name missing **")
+        elif commands[0] not in self.valid_classes:
+            print("** class doesn't exist **")
+        elif len(commands) < 2:
+            print("** instance id missing **")
+        else:
+            objects = storage.all()
+            # print(objects) # {'Scooter.dada58ca-fd6b-4ca9-af01-519fe7248fc8': <model.Scooter.Scooter object at 0x000002C3D2034830>, 'Motor.462106f8-4fce-46c9-bb7e-68e65d8adc53': <model.Motor.Motor object at 0x000002C3D2035700>, 'Bike.78013a16-bf8a-4cd3-96ad-b410003ce651': <model.Bike.Bike object at 0x000002C3D2036780>, 'Bike.91efd02a-472f-4f15-a5be-f4a9533dafd3': <model.Bike.Bike object at 0x000002C3D2036720>, 'Bike.d52a014c-7652-49e2-bf49-b587bb79f5d7': <model.Bike.Bike object at 0x000002C3D20366C0>}
+            # print(commands[1])
+            # key = "{}.{}".format(commands[0], commands[1])
+            # print(key) # Bike.78013a16-bf8a-4cd3-96ad-b410003ce651
+            for k in objects.keys():
+                if commands[1] in k and commands[0] in k:
+                    v = objects[k]
+
+            storage.delete(v)
+            storage.save()
 
     def do_all(self, arg):
         """
         Print the string representation of all instances or a specific class.
+        Usage: all <name_class> # for instances in class specific
+            or all              # for instances in all class
         """
-        pass
+        objects = storage.all()
+        commands = shlex.split(arg)
+
+        if len(commands) == 0:
+            for key, value in objects.items():
+                # print(str(value)) # print all instances classes
+                print('{} : {}'.format(key, value))
+        elif commands[0] not in self.valid_classes:
+            print("** class doesn't exist **")
+        else:
+            for key, value in objects.items():
+                if key.split('.')[0] == commands[0]:
+                    print('{} : {}'.format(key, value))
 
     def do_count(self, arg):
         """
+        Counts and retrieves the number of instances of a class
+        usage: count <class name>   # for instances in class specific
+            or count                # for instances in all class
         """
-        pass
+        objects = storage.all()
+        commands = shlex.split(arg)
+        count = 0
+        # print(commands)
+
+        if len(commands) == 0:
+            for key, _ in objects.items():
+                count += 1
+            print("for all class count = ",count)
+        elif commands[0] not in self.valid_classes:
+            print("** class doesn't exist **")
+        else:
+            for key, _ in objects.items():
+                if key.split('.')[0] == commands[0]:
+                    count += 1
+            print("for class {} count = {}".format(commands[0], count))
 
     def do_all_class(self, arg):
         """
