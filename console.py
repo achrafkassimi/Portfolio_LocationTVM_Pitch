@@ -140,16 +140,15 @@ class LocationTVM_Command(cmd.Cmd):
         else:
             objects = storage.all()
             # print(objects) # {'Scooter.dada58ca-fd6b-4ca9-af01-519fe7248fc8': <model.Scooter.Scooter object at 0x000002C3D2034830>, 'Motor.462106f8-4fce-46c9-bb7e-68e65d8adc53': <model.Motor.Motor object at 0x000002C3D2035700>, 'Bike.78013a16-bf8a-4cd3-96ad-b410003ce651': <model.Bike.Bike object at 0x000002C3D2036780>, 'Bike.91efd02a-472f-4f15-a5be-f4a9533dafd3': <model.Bike.Bike object at 0x000002C3D2036720>, 'Bike.d52a014c-7652-49e2-bf49-b587bb79f5d7': <model.Bike.Bike object at 0x000002C3D20366C0>}
-            key = "{}.{}".format(commands[0], commands[1])
+            # print(commands[1])
+            # key = "{}.{}".format(commands[0], commands[1])
             # print(key) # Bike.78013a16-bf8a-4cd3-96ad-b410003ce651
-            if key in objects:
-                del objects[key]
-                # storage.delete(commands[1])
-                # storage.all().pop(key)
-                storage.save()
-                # storage.reload()
-            else:
-                print("** no instance found **")
+            for k in objects.keys():
+                if commands[1] in k and commands[0] in k:
+                    v = objects[k]
+
+            storage.delete(v)
+            storage.save()
 
     def do_all(self, arg):
         """

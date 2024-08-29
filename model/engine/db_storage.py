@@ -7,11 +7,12 @@ from model.BaseMachine import BaseMachine, Base
 from model.Scooter import Scooter
 from model.Motor import Motor
 from model.Bike import Bike
-from os import getenv
-import sqlalchemy
+# from os import getenv
+# import sqlalchemy
 from sqlalchemy.orm import Session
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
+from sqlalchemy import select, update, delete, values
 
 classes = {"Scooter": Scooter, "Motor": Motor, "Bike": Bike}
 
@@ -34,7 +35,7 @@ class DBStorage:
                                              Location_TVM_MYSQL_PWD,
                                              Location_TVM_MYSQL_HOST,
                                              Location_TVM_MYSQL_DB))
-        # self.__session = Session(self.__engine)
+        self.__session = Session(self.__engine)
         # if Location_TVM_ENV == "test":
         #     Base.metadata.drop_all(self.__engine)
 
@@ -63,21 +64,16 @@ class DBStorage:
         """
         self.__session.commit()
 
-    def delete(self, obj= None):
+    def delete(self, obj= None): # , obj2= None
         """delete from the current database session obj if not None"""
-        if obj is not None:
+        if obj:
+            print("test")
+            # print(obj)
             self.__session.delete(obj)
-        # if obj:
-        #     self.__session.delete(obj)
-        #     self.save()
+            self.save()
 
     def reload(self):
         """reloads data from the database"""
-        # Base.metadata.create_all(self.__engine)
-        # sess_factory = sessionmaker(bind=self.__engine, expire_on_commit=False)
-        # Session = scoped_session(sess_factory)
-        # self.__session = Session
-
         session_factory = sessionmaker(bind=self.__engine, expire_on_commit=False)
         Base.metadata.create_all(self.__engine)
         self.__session = scoped_session(session_factory)
