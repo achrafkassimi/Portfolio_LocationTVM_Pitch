@@ -16,6 +16,8 @@ from model.Bike import Bike
 class LocationTVM_Command(cmd.Cmd):
     """
     Attributes LocationTVM_Command console class
+    prompt 
+    classes
     """
     prompt = "(Location_TVM) "
     valid_classes = ["BaseMachine", "Scooter", "Motor", "Bike"]
@@ -153,13 +155,45 @@ class LocationTVM_Command(cmd.Cmd):
     def do_all(self, arg):
         """
         Print the string representation of all instances or a specific class.
+        Usage: all <name_class> # for instances in class specific
+            or all              # for instances in all class
         """
-        pass
+        objects = storage.all()
+        commands = shlex.split(arg)
+
+        if len(commands) == 0:
+            for key, value in objects.items():
+                # print(str(value)) # print all instances classes
+                print('{} : {}'.format(key, value))
+        elif commands[0] not in self.valid_classes:
+            print("** class doesn't exist **")
+        else:
+            for key, value in objects.items():
+                if key.split('.')[0] == commands[0]:
+                    print('{} : {}'.format(key, value))
 
     def do_count(self, arg):
         """
+        Counts and retrieves the number of instances of a class
+        usage: count <class name>   # for instances in class specific
+            or count                # for instances in all class
         """
-        pass
+        objects = storage.all()
+        commands = shlex.split(arg)
+        count = 0
+        # print(commands)
+
+        if len(commands) == 0:
+            for key, _ in objects.items():
+                count += 1
+            print("for all class count = ",count)
+        elif commands[0] not in self.valid_classes:
+            print("** class doesn't exist **")
+        else:
+            for key, _ in objects.items():
+                if key.split('.')[0] == commands[0]:
+                    count += 1
+            print("for class {} count = {}".format(commands[0], count))
 
     def do_all_class(self, arg):
         """
