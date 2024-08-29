@@ -144,7 +144,7 @@ class LocationTVM_Command(cmd.Cmd):
             # print(key) # Bike.78013a16-bf8a-4cd3-96ad-b410003ce651
             if key in objects:
                 del objects[key]
-                # storage.delete(key)
+                # storage.delete(commands[1])
                 # storage.all().pop(key)
                 storage.save()
                 # storage.reload()
