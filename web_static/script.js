@@ -1,22 +1,18 @@
-// Show Login Form
 function showLogin() {
   document.getElementById("login-form").classList.add("active");
   document.getElementById("register-form").classList.remove("active");
 }
 
-// Show Register Form
 function showRegister() {
   document.getElementById("login-form").classList.remove("active");
   document.getElementById("register-form").classList.add("active");
 }
 
-// Validate Email
 function validateEmail(email) {
   const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   return re.test(String(email).toLowerCase());
 }
 
-// Login Form Validation
 document.getElementById("login").addEventListener("submit", function (e) {
   e.preventDefault();
 
@@ -47,7 +43,6 @@ document.getElementById("login").addEventListener("submit", function (e) {
   }
 });
 
-// Register Form Validation
 document.getElementById("register").addEventListener("submit", function (e) {
   e.preventDefault();
 
