@@ -35,7 +35,7 @@ class DBStorage:
                                              Location_TVM_MYSQL_PWD,
                                              Location_TVM_MYSQL_HOST,
                                              Location_TVM_MYSQL_DB))
-        self.__session = Session(self.__engine)
+        # self.__session = Session(self.__engine)
         # if Location_TVM_ENV == "test":
         #     Base.metadata.drop_all(self.__engine)
 
@@ -45,7 +45,7 @@ class DBStorage:
         """
         new_dict = {}
         for clss in classes:
-            if cls is None or cls is classes[clss] or cls is clss:
+            if cls is None or cls is classes[clss] or cls is clss: 
                 objs = self.__session.query(classes[clss]).all()
                 for obj in objs:
                     key = obj.__class__.__name__ + '.' + obj.id
@@ -56,18 +56,20 @@ class DBStorage:
         """
         add the object to the current database session
         """
+        # print("neww hna")
         self.__session.add(obj)
 
     def save(self):
         """
         commit all changes of the current database session
         """
+        # self.__session.reload()
         self.__session.commit()
 
     def delete(self, obj= None): # , obj2= None
         """delete from the current database session obj if not None"""
         if obj:
-            print("test")
+            # print("test")
             # print(obj)
             self.__session.delete(obj)
             self.save()
@@ -89,10 +91,13 @@ class DBStorage:
         Returns the object based on the class name and its ID, or
         None if not found
         """
-        if cls not in classes.values():
+        if cls not in classes.values(): # classes.keys()
+            print(cls)
+            print(classes.keys())
             return None
-
+        print("test is in class")
         all_cls = model.storage.all(cls)
+        print(all_cls)
         for value in all_cls.values():
             if (value.id == id):
                 return value

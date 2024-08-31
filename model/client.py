@@ -20,7 +20,7 @@ from sqlalchemy import Column, String
     #     super().__init__(*args, **kwargs)
 
 
-class Client:
+class Client(Base):
     """
     Represent a Bike.
 
