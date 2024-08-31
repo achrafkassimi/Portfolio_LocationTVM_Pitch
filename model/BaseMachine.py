@@ -55,7 +55,7 @@ class BaseMachine:
         """
         # from model import storage
         self.updated_at = datetime.now()
-        print("test")
+        # print("test")
         model.storage.new(self)
         model.storage.save()
 
