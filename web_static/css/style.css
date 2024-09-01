@@ -824,3 +824,70 @@ border-radius: 10px;
 .bg-light{
   background-color: white;
 }
+
+/* CSS Tarif */
+
+.body_content{
+  margin: 0 auto;
+  width: 80%;
+}
+
+#title{
+  color: #1b7919;
+  text-align: center;
+  font-size: 50px;
+  margin: 2rem;
+  text-decoration-line: underline;
+}
+.tarif_section{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #e3e3e3;
+  padding: 2rem;
+  border-radius: 20px;
+  margin: 3rem;
+  gap: 3rem;
+ 
+}
+.part_1 , .part_2{
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+}
+.info_tarif{
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  padding:3px ;
+}
+.line_t{
+  height: 1px;
+  background-color: #000000;
+}
+#text{
+  line-height: 1.7;
+}
+#text_comment{
+  margin-top: 40px;
+  font-size: 12px;
+}
+.btn_Abn{
+  transition: .30s;
+}
+.btn_Abn:hover{
+  background-color: #3cdd39;
+  transform: scale(1.05);
+}
+@media only screen and (max-width: 470px){
+  .tarif_section{
+    display: flex;
+    flex-direction: column;
+    gap: 0rem;
+  }
+  .body_content{
+    margin: 0 auto;
+    width: 100%;
+  }
+}
