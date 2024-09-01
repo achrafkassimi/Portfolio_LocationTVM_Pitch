@@ -1,4 +1,12 @@
-class reservation:
+#!/usr/bin/python3
+"""
+Defines the reservation class.
+"""
+from model.BaseMachine import BaseMachine, Base
+from sqlalchemy import Column, String
+
+
+class reservation(Base):
 
     def __init__(self):     
         self.__id =None

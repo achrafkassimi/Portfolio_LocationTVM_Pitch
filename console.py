@@ -6,12 +6,13 @@ import cmd
 import shlex
 import re
 import ast
+import model
 from model.__init__ import storage
 from model.BaseMachine import BaseMachine
 from model.Scooter import Scooter
 from model.Motor import Motor
 from model.Bike import Bike
-
+from sqlalchemy.orm import sessionmaker
 
 class LocationTVM_Command(cmd.Cmd):
     """
@@ -205,9 +206,10 @@ class LocationTVM_Command(cmd.Cmd):
         """
         Update an instance by adding or updating an attribute.
         Usage: update <class_name> <id> <attribute_name> "<attribute_value>"
+        example update Bike 91efd02a-472f-4f15-a5be-f4a9533dafd3 created_at "2024-08-29 01:06:53" updated_at "2024-08-29 01:06:53" name "44test"  code_model "i125" Speed_max "789" Puissance "266" detail "test teat"
         """
         commands = shlex.split(arg)
-        print(commands)
+        # print(commands)
 
         if len(commands) == 0:
             print("** class name missing **")
@@ -217,8 +219,11 @@ class LocationTVM_Command(cmd.Cmd):
             print("** instance id missing **")
         else:
             objects = storage.all()
-
+            # print(objects)
+            # print(commands[0], commands[1])
             key = "{}.{}".format(commands[0], commands[1])
+            # oobjc = storage.get(commands[0], commands[1])
+            # print(oobjc)
             if key not in objects:
                 print("** no instance found **")
             elif len(commands) < 3:
@@ -227,7 +232,9 @@ class LocationTVM_Command(cmd.Cmd):
                 print("** value missing **")
             else:
                 obj = objects[key]
+                # print(obj, type(obj))
                 curly_braces = re.search(r"\{(.*?)\}", arg)
+                # print(curly_braces)
 
                 if curly_braces:
                     # added to catch errors
@@ -242,14 +249,15 @@ class LocationTVM_Command(cmd.Cmd):
                         try:
                             attr_name1 = attribute_names[0]
                             attr_value1 = attribute_values[0]
-                            setattr(obj, attr_name1, attr_value1)
+                            # setattr(obj, attr_name1, attr_value1)
                         except Exception:
                             pass
                         try:
                             # added to catch exception
                             attr_name2 = attribute_names[1]
                             attr_value2 = attribute_values[1]
-                            setattr(obj, attr_name2, attr_value2)
+                            # setattr(obj, attr_name2, attr_value2)
+                            # obj.attr_name2 = attr_value2
                         except Exception:
                             pass
                     except Exception:
@@ -258,14 +266,21 @@ class LocationTVM_Command(cmd.Cmd):
 
                     attr_name = commands[2]
                     attr_value = commands[3]
-
+                    # print(attr_name)
+                    # print(attr_value)
+                    
                     try:
                         attr_value = eval(attr_value)
                     except Exception:
                         pass
-                    setattr(obj, attr_name, attr_value)
-
-                obj.save()
+                    setattr(model.storage.all()[key], attr_name, attr_value)
+                    # obj.name = attr_value
+                    # print(obj, type(obj))
+                    # obj.save() # ???????????????
+                    # print(model.storage.all()[key])
+                # storage.save()
+                model.storage.all()[key].save()
+                
 
 
 
