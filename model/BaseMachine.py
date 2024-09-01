@@ -6,6 +6,7 @@ import uuid
 from datetime import datetime
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import Column, DateTime, String
+import model
 # from os import getenv
 
 time = "%Y-%m-%dT%H:%M:%S.%f"
@@ -27,7 +28,7 @@ class BaseMachine:
         if kwargs:
             for key, value in kwargs.items():
                 if key == "created_at" or key == "updated_at":
-                    value = datetime.strptime(value, "%Y-%m-%dT%H:%M:%S.%f")
+                    value = datetime.strptime(value, time)
                 if key != "__class__":
                     setattr(self, key, value)
             if "id" not in kwargs:
@@ -52,10 +53,11 @@ class BaseMachine:
         """
         Updates updated_at with current time when instance is changed
         """
-        from model import storage
-        self.updated_at = datetime.utcnow()
-        storage.new(self)
-        storage.save()
+        # from model import storage
+        self.updated_at = datetime.now()
+        # print("test")
+        model.storage.new(self)
+        model.storage.save()
 
     def to_dict(self):
         """
