@@ -892,140 +892,97 @@ border-radius: 10px;
   }
 }
 
-/* CSS page reservation */
 
-.container_R {
-  position: relative;
-  width: 100%; /* Allow the container to take up the full width of the screen */
-  max-width: 900px; /* Set a maximum width for the container */
-  margin: 0 auto; 
-  padding-top: 3rem ;
-  padding-bottom: 1rem; /* Add horizontal padding */
-}
-#Reservation_title{
-  font-size: 40px;
-  color: green;
-  text-align: center;
-  padding: 20px;
-  text-decoration-line: underline;
-}
-/* Content styles */
-.content_R {
-  max-width: 600px;
-  margin: 0 auto; /* Margin at the top, center horizontally */
-  background-color: #fff;
-  padding-left: 28px;
-  padding-top:10px ;
-  border-radius: 10px;
-  box-shadow: 10px 10px 10px rgba(1, 1, 1, 0.1);
-}
-/* Form container styles */
-.form-container_R{
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 10px; /* Add gap between grid items */
-}
+/* about section */
 
-/* Form control styles */
-.formControl_R{
-  display: flex;
-  flex-direction: column;
-  justify-content: start;
-  align-items: start;
-}
-.formControl_R input,select{
-  height: 35px;
-    padding: 0 10px; /* Add padding inside the input elements */
-    margin-bottom: 10px; /* Add margin between form controls */
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-select {
-  width: 88%; /* Make the select element take up the full width */
-}
-
-/* Button container styles */
-.button_container {
-  text-align: center;
-}
-
-/* Focus and hover effects */
-input:focus {
-  outline-color: red;
-}
-
-button:hover {
-  background-color: #0019d8;
-  cursor: pointer;
-}
-.formControl1{
-  width: 560px;
-}
-
-.formControl_R label{
-  font-size: 15px;
-  padding: 4px;
-}
-.bady_Reservation{
-  height: 100vh;
-}
-.image_section{
-  margin-top: 10px;
-  position: absolute;
+.know_section{
   width: 100%;
-  height: 100vh;
-  overflow: hidden;
+  height: 100%;
+  margin-bottom: 3rem;
 }
-#img_reservation{
-object-fit: cover;
-height: 100vh;
-width: 100%;
-}
-#Reservation_footer{
+.know_section img{
+  width: 100%;
+  height: 50vh;
   position: relative;
-  margin-top: 0;
 }
-@media only screen and (max-width: 470px){
-  .content_R {
-    max-width: 350px;
-    margin: 0 auto; /* Margin at the top, center horizontally */
-    background-color: #fff;
-    padding-left: 50px;
-    padding-top:10px ;
-    border-radius: 10px;
-    box-shadow: 10px 10px 10px rgba(1, 1, 1, 0.462);
-  }
-  .container_R {
-    position: relative;
-    width: 100%; /* Allow the container to take up the full width of the screen */
-    max-width: 900px; /* Set a maximum width for the container */
-    margin: 0 auto; 
-    padding-top: 1rem ;
-    padding-bottom: 1rem; /* Add horizontal padding */
-  }
-  select {
-    width: 76%; /* Make the select element take up the full width */
-  }
-  #Reservation_footer{
-    position: relative;
-    margin-top: 4rem;
-  }
-  #Reservation_title{
-    font-size: 23px;
-    text-align: center;
-    padding: 17px;
-    padding-left: 1px;
-  }
-  #img_reservation{
-    object-fit: cover;
-    height: 110vh;
-    width: 100%;
-    }
-    .image_section{
-      margin-top: 10px;
-      position: absolute;
-      width: 100%;
-      height: 120vh;
-      overflow: hidden;
-    }
+.know_section .text{
+  position: absolute;
+  top:8rem;
+  text-align: center;
+  width: 100%;
+}
+.know_section .text h1 ,.know_section .text p{
+  color: #fff;
+}
+.aboutAs{
+  display: flex;
+  width: 100%;
+  background-color: #4e9fbdae;
+  margin: 3rem;
+  padding: 3rem;
+  justify-content: space-between;
+  align-items: center;
+  gap: 3rem;
+  border-radius: 5px;
+  height: 100%;
+}
+.ab{
+  background-color: #37b53fcf;
+  margin: 5rem;
+  width: 100%;
+  padding: 1rem;
+  border-radius: 5px;
+  height: 100%;
+}
+.aboutAs .img1{
+  width: 100%;
+  height: 20rem;
+  background-color: #088178;
+  
+}
+.aboutAs .img1 img{
+  width: 100%;
+  object-fit: cover;
+  height: 100%;
+  border-radius: 4px;
+}
+.aboutAs .img2 img{
+  width: 100%;
+  object-fit: cover;
+  height: 100%;
+}
+.aboutAs .img3 img{
+  width: 100%;
+  object-fit: cover;
+  height: 100%;
+}
+.aboutAs .img4 img{
+  width: 100%;
+  object-fit: cover;
+  height: 100%;
+}
+.abGlobal{
+  width: 80%;
+  border-radius: 5px;
+}
+.aboutAs .text1 h3, .aboutAs .text1 p {
+  color: white;
+  line-height: 2rem;
+}
+
+.container_R{
+  margin-top: 3rem;
+  padding-top: 2rem;
+  margin-bottom: 2rem;
+  border-radius: 8px;
+  width: 70%;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  background-color: rgba(2, 106, 35, 0.745);
+
+}
+.reservation-form{
+  display: flex;
 }

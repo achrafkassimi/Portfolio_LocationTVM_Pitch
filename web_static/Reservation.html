@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact Us</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <nav class="nav">
+      <div class="container flex1">
+        <div class="logo">
+          <img src="image/logo.png" alt="" width="200" />
+        </div>
+        <div class="menu">
+          <div class="main_list" id="mainListDiv">
+            <ul>
+              <li><a href="index.html">Home</a></li>
+              <li><a href="#">Blog</a></li>
+              <li><a href="#">Reservation</a></li>
+              <li><a href="#">Offer</a></li>
+              <li><a href="Tarif.html">Tarif</a></li>
+              <li><a href="#">About Us</a></li>
+              <li><a href="#">FAQ</a></li>
+              <li><a href="Contact.html">Contact Us</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="media_button">
+          <i class="fas fa-bars" id="mediaButton"></i>
+        </div>
+
+        <div class="account flex1">
+          <i class="far fa-unlock-alt"></i>
+          <button>
+            <p><a href="Login.html">Login</a></p>
+          </button>
+          <button>
+            <p><a href="Registre.html">Registre</a></p>
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container_R">
+      <h2>Réservation</h2>
+      <form id="reservation-form">
+        <div class="input-group">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" required />
+          <span class="error" id="name-error"></span>
+        </div>
+        <div class="input-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required />
+          <span class="error" id="email-error"></span>
+        </div>
+        <div class="input-group">
+          <label for="phone">Phone</label>
+          <input type="tel" id="phone" name="phone" required />
+          <span class="error" id="phone-error"></span>
+        </div>
+        <div class="input-group">
+          <label for="date">Date</label>
+          <input type="date" id="date" name="date" required />
+          <span class="error" id="date-error"></span>
+        </div>
+        <div class="input-group">
+          <label for="time">Time</label>
+          <select id="time" name="time" required>
+            <option value="">select a time
+            </option>
+            <option value="09:00">09:00</option>
+            <option value="10:00">10:00</option>
+            <option value="11:00">11:00</option>
+            <option value="12:00">12:00</option>
+            <option value="13:00">13:00</option>
+            <option value="14:00">14:00</option>
+            <option value="15:00">15:00</option>
+            <option value="16:00">16:00</option>
+            <option value="17:00">17:00</option>
+            <option value="18:00">18:00</option>
+            <option value="19:00">19:00</option>
+            <option value="20:00">20:00</option>
+            <option value="21:00">21:00</option>
+            <option value="22:00">22:00</option>
+          </select>
+          <span class="error" id="time-error"></span>
+        </div>
+        <div class="input-group">
+            <label for="time">Day</label>
+            <select id="time" name="time" required>
+              <option value="">select a day
+
+              </option>
+              <option value="Monday">Monday</option>
+              <option value="Tuesday">Tuesday</option>
+              <option value="Wednesday">Wednesday</option>
+              <option value="Thursday">Thursday</option>
+              <option value="Friday">Friday</option>
+              <option value="Saturday">Saturday</option>
+              <option value="Sunday">Sunday</option>
+            </select>
+            <span class="error" id="time-error"></span>
+          </div>
+        <div class="input-group">
+          <label for="guests">Number of guests</label>
+          <input
+            type="number"
+            id="guests"
+            name="guests"
+            min="1"
+            value="1"
+            required
+          />
+          <span class="error" id="guests-error"></span>
+        </div>
+        <button type="submit">Réserver</button>
+      </form>
+      <div id="success-message" class="success-message"></div>
+    </div>
+
+    <script>
+      document
+        .getElementById("reservation-form")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+          let hasError = false;
+
+          // Clear previous errors
+          document.querySelectorAll(".error").forEach(function (error) {
+            error.textContent = "";
+          });
+
+          // Validate Name
+          const name = document.getElementById("name").value;
+          if (name === "") {
+            document.getElementById("name-error").textContent =
+              "Veuillez entrer votre nom.";
+            hasError = true;
+          }
+
+          // Validate Email
+          const email = document.getElementById("email").value;
+          if (!email.includes("@")) {
+            document.getElementById("email-error").textContent =
+              "Veuillez entrer un email valide.";
+            hasError = true;
+          }
+
+          // Validate Phone
+          const phone = document.getElementById("phone").value;
+          if (phone.length < 10) {
+            document.getElementById("phone-error").textContent =
+              "Veuillez entrer un numéro de téléphone valide.";
+            hasError = true;
+          }
+
+          // Validate Date
+          const date = document.getElementById("date").value;
+          if (date === "") {
+            document.getElementById("date-error").textContent =
+              "Veuillez sélectionner une date.";
+            hasError = true;
+          }
+
+          // Validate Time
+          const time = document.getElementById("time").value;
+          if (time === "") {
+            document.getElementById("time-error").textContent =
+              "Veuillez sélectionner une heure.";
+            hasError = true;
+          }
+
+          // Validate Guests
+          const guests = document.getElementById("guests").value;
+          if (guests < 1) {
+            document.getElementById("guests-error").textContent =
+              "Veuillez entrer un nombre de convives valide.";
+            hasError = true;
+          }
+
+          // If no errors, display success message
+          if (!hasError) {
+            document.getElementById("success-message").textContent =
+              "Votre réservation a été envoyée avec succès !";
+            // Reset form
+            document.getElementById("reservation-form").reset();
+          }
+        });
+    </script>
+
+    <footer>
+      <div class="scontainer grid">
+        <div class="box">
+          <div class="logo">
+            <img src="image/logo.png" alt="" width="200" />
+          </div>
+          <h3>+212701106060</h3>
+          <small>Email : dev.prognft@gmail.com</small>
+        </div>
+
+        <div class="box">
+          <h3>Customer Services</h3>
+          <div class="flex1">
+            <ul>
+              <li>Help</li>
+              <li>Contact Us</li>
+              <li>Warranty</li>
+              <li>Terms & Conditions</li>
+            </ul>
+            <ul>
+              <li>My Account</li>
+              <li>Arder Status</li>
+              <li>Payment</li>
+              <li>Oders</li>
+              <li>Cancellation</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="box">
+          <h3>Let's stay in touch</h3>
+          <div class="input flex1">
+            <input type="email" placeholder="Email Address" />
+            <i class="far fa-long-arrow-right"></i>
+          </div>
+          <div class="social_media">
+            <i class="fab fa-facebook-f"></i>
+            <i class="fab fa-instagram"></i>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

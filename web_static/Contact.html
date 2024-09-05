@@ -1,45 +1,132 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Us</title>
-    <link rel="stylesheet" href="/web_static/css/style.css">
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tarif</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    
+
     <nav class="nav">
-        <div class="container flex1">
+      <div class="container flex1">
+        <div class="logo">
+          <img src="image/logo.png" alt="" width="200" />
+        </div>
+        <div class="menu">
+          <div class="main_list" id="mainListDiv">
+            <ul>
+              <li><a href="index.html">Home</a></li>
+              <li><a href="#">Blog</a></li>
+              <li><a href="Reservation.html">Reservation</a></li>
+              <li><a href="#">Offer</a></li>
+              <li><a href="Tarif.html">Tarif</a></li>
+              <li><a href="#">About Us</a></li>
+              <li><a href="#">FAQ</a></li>
+              <li><a href="#">Contact Us</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="media_button">
+          <i class="fas fa-bars" id="mediaButton"></i>
+        </div>
+
+        <div class="account flex1">
+          <i class="far fa-unlock-alt"></i>
+          <button >
+            <p><a href="Login.html">Login</a></p>
+          </button>
+          <button>
+            <p><a href="Registre.html">Registre</a></p>
+          </button>
+        </div>
+      </div>
+    </nav>
+
+
+    <div class="container">
+      <h2 class="section-title text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3">Contact Us</span></h2>
+      <div class="row px-xl-5">
+          <div class="col-lg-7 mb-5">
+              <div class="contact-form bg-light p-30">
+                  <div id="success"></div>
+                  <form name="sentMessage" id="contactForm" novalidate="novalidate">
+                      <div class="control-group">
+                          <input type="text" class="form-control" id="name" placeholder=" Your Name"
+                              required="required" data-validation-required-message="Please enter your name" />
+                          <p class="help-block text-danger"></p>
+                      </div>
+                      <div class="control-group">
+                          <input type="email" class="form-control" id="email" placeholder=" Your Email"
+                              required="required" data-validation-required-message="Please enter your email" />
+                          <p class="help-block text-danger"></p>
+                      </div>
+                      <div class="control-group">
+                          <input type="text" class="form-control" id="subject" placeholder=" Subject"
+                              required="required" data-validation-required-message="Please enter a subject" />
+                          <p class="help-block text-danger"></p>
+                      </div>
+                      <div class="control-group">
+                          <textarea class="form-control" rows="8" id="message" placeholder=" Message"
+                              required="required"
+                              data-validation-required-message=" Please enter your message"></textarea>
+                          <p class="help-block text-danger"></p>
+                      </div>
+                      <div>
+                          <button class="btn btn-primary py-2 px-4" type="submit" id="sendMessageButton">Send
+                              Message</button>
+                      </div>
+                  </form>
+              </div>
+          </div>
+          <div class="col-lg-5 mb-5">
+              <div class="bg-light p-30 mb-30">
+                  <iframe style="width: 100%; height: 400px;"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13774.011469375346!2d-6.790479!3d34.051635!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzTCsDAzJzA2LjAiTiA2wrA0Nyc1MS43Ilc!5e0!3m2!1sen!2sza!4v1711375085103!5m2!1sen!2sza" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+              
+                  <p class="mb-2"><i class="fa fa-map-marker-alt text-primary mr-3"></i>hay karima sect c n0 54 </p>
+                  <p class="mb-2"><i class="fa fa-envelope text-primary mr-3"></i>LocatiomTVM</p>
+                  <p class="mb-2"><i class="fa fa-phone-alt text-primary mr-3"></i>+27 076 064 7168 / +234 813 162 9292</p>
+                  
+                </div> 
+                  
+          </div>
+      </div>
+  </div>
+
+
+    <!-- Footer_section -->
+    <footer>
+      <div class="scontainer grid">
+        <div class="box">
           <div class="logo">
             <img src="image/logo.png" alt="" width="200" />
           </div>
-          <div class="menu">
-            <div class="main_list" id="mainListDiv">
-              <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="#">Blog</a></li>
-                <li><a href="#">Reserver</a></li>
-                <li><a href="#">Offer</a></li>
-                <li><a href="#">Tarif</a></li>
-                <li><a href="#">About Us</a></li>
-                <li><a href="#">FAQ</a></li>
-                <li><a href="#">Contact Us</a></li>
-              </ul>
-            </div>
-          </div>
-          <div class="media_button">
-            <i class="fas fa-bars" id="mediaButton"></i>
-          </div>
-  
-          <div class="account flex1">
-            <i class="far fa-unlock-alt"></i>
-            <button >
-              <p><a href="Login.html">Login</a></p>
-            </button>
-            <button>
-              <p><a href="Registre.html">Registre</a></p>
-            </button>
+          <h3>+212701106060</h3>
+          <small>Email : dev.prognft@gmail.com</small>
+        </div>
+
+        <div class="box">
+          <h3>Customer Services</h3>
+          <div class="flex1">
+            <ul>
+              <li>Help</li>
+              <li>Contact Us</li>
+              <li>Warranty</li>
+              <li>Terms & Conditions</li>
+            </ul>
+            <ul>
+              <li>My Account</li>
+              <li>Arder Status</li>
+              <li>Payment</li>
+              <li>Oders</li>
+              <li>Cancellation</li>
+            </ul>
           </div>
         </div>
+<<<<<<< HEAD
       </nav>
       <div class="container">
         <h2 class="section-title text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3">Contact Us</span></h2>
@@ -138,3 +225,21 @@
 </body>
 
 </html>
+=======
+
+        <div class="box">
+          <h3>Let's stay in touch</h3>
+          <div class="input flex1">
+            <input type="email" placeholder="Email Address" />
+            <i class="far fa-long-arrow-right"></i>
+          </div>
+          <div class="social_media">
+            <i class="fab fa-facebook-f"></i>
+            <i class="fab fa-instagram"></i>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
+>>>>>>> 672a727807153b5e04c8c24e2495ac1ee918b948

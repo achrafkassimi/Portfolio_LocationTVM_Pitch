@@ -209,7 +209,7 @@ class LocationTVM_Command(cmd.Cmd):
         example update Bike 91efd02a-472f-4f15-a5be-f4a9533dafd3 created_at "2024-08-29 01:06:53" updated_at "2024-08-29 01:06:53" name "44test"  code_model "i125" Speed_max "789" Puissance "266" detail "test teat"
         """
         commands = shlex.split(arg)
-        # print(commands)
+        # print(commands,"/n")
 
         if len(commands) == 0:
             print("** class name missing **")
@@ -238,6 +238,7 @@ class LocationTVM_Command(cmd.Cmd):
 
                 if curly_braces:
                     # added to catch errors
+                    print("# added to catch errors curly_braces")
                     try:
                         str_data = curly_braces.group(1)
 
@@ -246,39 +247,59 @@ class LocationTVM_Command(cmd.Cmd):
                         attribute_names = list(arg_dict.keys())
                         attribute_values = list(arg_dict.values())
                         # added to catch exception
-                        try:
-                            attr_name1 = attribute_names[0]
-                            attr_value1 = attribute_values[0]
+                        # try:
+                            # attr_name1 = attribute_names[0]
+                            # attr_value1 = attribute_values[0]
                             # setattr(obj, attr_name1, attr_value1)
-                        except Exception:
-                            pass
-                        try:
+                        # except Exception:
+                        #     pass
+                        # try:
                             # added to catch exception
-                            attr_name2 = attribute_names[1]
-                            attr_value2 = attribute_values[1]
+                            # attr_name2 = attribute_names[1]
+                            # attr_value2 = attribute_values[1]
                             # setattr(obj, attr_name2, attr_value2)
                             # obj.attr_name2 = attr_value2
-                        except Exception:
-                            pass
+                        # except Exception:
+                        #     pass
                     except Exception:
                         pass
                 else:
 
-                    attr_name = commands[2]
-                    attr_value = commands[3]
+                    # attr_name = commands[2]
+                    # attr_value = commands[3]
                     # print(attr_name)
                     # print(attr_value)
                     
-                    try:
-                        attr_value = eval(attr_value)
-                    except Exception:
-                        pass
-                    setattr(model.storage.all()[key], attr_name, attr_value)
-                    # obj.name = attr_value
-                    # print(obj, type(obj))
-                    # obj.save() # ???????????????
-                    # print(model.storage.all()[key])
-                # storage.save()
+                    # try:
+                    #     attr_value = eval(attr_value)
+                    # except Exception:
+                    #     pass
+
+                    kkey = []
+                    vvalues = []
+
+                    for i, x in enumerate(commands, 1):
+                        if i % 2 == 0:    # check to see if it hit the interval threshold?
+                            vvalues.append(x)
+                        else:
+                            kkey.append(x)
+                    
+                    # print(kkey)
+                    # print(vvalues)
+
+                    kkey.pop(0)
+                    vvalues.pop(0)
+
+                    for u, o in zip(kkey,vvalues):
+                        # print(u, o)
+                        setattr(model.storage.all()[key], u, o)
+
+                    # setattr(model.storage.all()[key], attr_name, attr_value)
+                    ## obj.name = attr_value
+                    ## print(obj, type(obj))
+                    ## obj.save() # ???????????????
+                    ## print(model.storage.all()[key])
+                ## storage.save()
                 model.storage.all()[key].save()
                 
 
