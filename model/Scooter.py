@@ -3,10 +3,13 @@
 Defines the User class.
 """
 from model.BaseMachine import BaseMachine, Base
-from sqlalchemy import Column, String
+# from sqlalchemy import Column, String, Boolean
+from sqlalchemy import create_engine, Column, Integer, String, Date, Boolean, ForeignKey
+from sqlalchemy.orm import relationship
 
 
-class Scooter(BaseMachine, Base):
+# BaseMachine, 
+class Scooter(Base):
     """
     Represent a Scooter.
 
@@ -19,11 +22,19 @@ class Scooter(BaseMachine, Base):
         img = ??
     """
     __tablename__ = 'scooter'
+    id = Column(String(60), ForeignKey('machines.id'), primary_key=True)
     name = Column(String(128), nullable=False)
     code_model = Column(String(128), nullable=False)
     Speed_max = Column(String(128), nullable=False)
     Puissance = Column(String(128), nullable=False)
     detail = Column(String(256), nullable=False)
+    # available_dates = Column(String(128), nullable=False)
+    __mapper_args__ = {
+        'polymorphic_identity': 'scooter',
+    }
+
+    reservations = relationship("machines", back_populates="scooter")
+
     # image = ??
 
     def __init__(self, *args, **kwargs):

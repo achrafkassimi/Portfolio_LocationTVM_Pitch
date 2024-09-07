@@ -21,7 +21,7 @@ class LocationTVM_Command(cmd.Cmd):
     classes
     """
     prompt = "(Location_TVM) "
-    valid_classes = ["BaseMachine", "Scooter", "Motor", "Bike"]
+    valid_classes = ["BaseMachine", "Scooter", "Motor", "Bike", "CalendarDate", "Reservation", "Customer"]
 
     def emptyline(self):
         """
@@ -32,13 +32,14 @@ class LocationTVM_Command(cmd.Cmd):
         """
         EOF (Ctrl+D) signal to exit the program
         """
-        print("")
+        print('Exiting...')
         return True
 
     def do_quit(self, arg):
         """
         Quit command to exit the program
         """
+        print('Exiting...')
         return True
 
     def do_how(self, line): # , line for print sum line
@@ -200,7 +201,9 @@ class LocationTVM_Command(cmd.Cmd):
         """
         Print the string representation of all class exist .
         """
-        pass
+        for x in self.valid_classes:
+            print(x)
+        return True
 
     def do_update(self, arg):
         """
@@ -301,7 +304,7 @@ class LocationTVM_Command(cmd.Cmd):
                     ## print(model.storage.all()[key])
                 ## storage.save()
                 model.storage.all()[key].save()
-                
+
 
 
 
