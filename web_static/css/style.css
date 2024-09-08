@@ -986,3 +986,9 @@ border-radius: 10px;
 .reservation-form{
   display: flex;
 }
+
+footer a{
+  text-decoration: none;
+}
+
+

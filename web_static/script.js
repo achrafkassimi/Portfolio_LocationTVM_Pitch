@@ -82,3 +82,18 @@ document.getElementById("register").addEventListener("submit", function (e) {
     alert("Registration successful");
   }
 });
+
+// Show button when scrolled down 100px
+window.onscroll = function() {
+  let scrollUpBtn = document.getElementById("scrollUpBtn");
+  if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+    scrollUpBtn.style.display = "block";
+  } else {
+    scrollUpBtn.style.display = "none";
+  }
+};
+
+// Scroll to the top when the button is clicked
+function scrollToTop() {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
