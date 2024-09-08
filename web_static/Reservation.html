@@ -172,12 +172,12 @@
           e.preventDefault();
           let hasError = false;
 
-          // Clear previous errors
+          
           document.querySelectorAll(".error").forEach(function (error) {
             error.textContent = "";
           });
 
-          // Validate Name
+          
           const name = document.getElementById("name").value;
           if (name === "") {
             document.getElementById("name-error").textContent =
@@ -185,7 +185,7 @@
             hasError = true;
           }
 
-          // Validate Email
+          
           const email = document.getElementById("email").value;
           if (!email.includes("@")) {
             document.getElementById("email-error").textContent =
@@ -193,7 +193,7 @@
             hasError = true;
           }
 
-          // Validate Phone
+          
           const phone = document.getElementById("phone").value;
           if (phone.length < 10) {
             document.getElementById("phone-error").textContent =
@@ -201,7 +201,7 @@
             hasError = true;
           }
 
-          // Validate Date
+          
           const date = document.getElementById("date").value;
           if (date === "") {
             document.getElementById("date-error").textContent =
@@ -209,7 +209,7 @@
             hasError = true;
           }
 
-          // Validate Time
+          
           const time = document.getElementById("time").value;
           if (time === "") {
             document.getElementById("time-error").textContent =
@@ -217,7 +217,7 @@
             hasError = true;
           }
 
-          // Validate Guests
+          
           const guests = document.getElementById("guests").value;
           if (guests < 1) {
             document.getElementById("guests-error").textContent =
@@ -225,11 +225,11 @@
             hasError = true;
           }
 
-          // If no errors, display success message
+          
           if (!hasError) {
             document.getElementById("success-message").textContent =
               "Votre réservation a été envoyée avec succès !";
-            // Reset form
+            
             document.getElementById("reservation-form").reset();
           }
         });
