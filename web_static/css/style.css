@@ -970,6 +970,7 @@ border-radius: 10px;
   line-height: 2rem;
 }
 
+/* Reservation css  */
 
 /* Container styles */
 .container_R{
@@ -1041,7 +1042,7 @@ select {
 }
 #btn_R {
   padding: 10px;
-  color: #fff;
+  color: #0a0a0a;
   background-color: #37b234;
   border-radius: 5px;
   width: 30%;
