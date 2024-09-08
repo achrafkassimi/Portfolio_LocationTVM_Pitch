@@ -970,19 +970,99 @@ border-radius: 10px;
   line-height: 2rem;
 }
 
+
+/* Container styles */
 .container_R{
-  margin-top: 3rem;
-  padding-top: 2rem;
-  margin-bottom: 2rem;
-  border-radius: 8px;
-  width: 70%;
-  display: grid;
-  justify-content: center;
-  align-items: center;
-  margin: 0 auto;
-  background-color: rgba(2, 106, 35, 0.745);
+  width: 100%; /* Allow the container to take up the full width of the screen */
+  max-width: 900px; /* Set a maximum width for the container */
+  margin: 0 auto; /* Center the container horizontally */
+  padding: 0 15px; /* Add horizontal padding */
+  margin-bottom: 1rem;
+}
+
+/* Content styles */
+.content_R{
+  max-width: 600px;
+  margin: 20px auto 0; /* Margin at the top, center horizontally */
+  background-color: #4eb376a3;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 10px 10px 10px rgba(1, 1, 1, 0.567);
+  margin-bottom: 1rem;
 
 }
-.reservation-form{
-  display: flex;
+
+/* Form container styles */
+.form-container_R{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 10px;
 }
+
+/* Form control styles */
+.formControl_R{
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+}
+
+/* Title styles */
+#title_R{
+  display: block;
+  text-align: center;
+  margin: 1rem;
+  text-decoration-line: underline;
+}
+
+/* Label styles */
+label {
+  margin-top: 5px;
+  font-size: 1.2rem;
+  margin-bottom: 5px;
+}
+
+/* Input, select, and textarea styles */
+input, select{
+  height: 35px;
+  padding: 0 10px; /* Add padding inside the input elements */
+  margin-bottom: 10px; /* Add margin between form controls */
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* Adjust select element width */
+select {
+  width: 100%; /* Make the select element take up the full width */
+}
+
+/* Button container styles */
+.button_container_R{
+  text-align: center;
+}
+#btn_R {
+  padding: 10px;
+  color: #fff;
+  background-color: #37b234;
+  border-radius: 5px;
+  width: 30%;
+  font-size: 1.2rem;
+  border: none;
+  transition: .3s;
+
+}
+#btn_R:hover{
+  background-color: rgb(29, 81, 29);
+  transform: scale(1.06);
+
+}
+
+/* Focus and hover effects */
+input:focus {
+  outline-color: red;
+}
+
+footer a{
+  text-decoration: none;
+}
+
+

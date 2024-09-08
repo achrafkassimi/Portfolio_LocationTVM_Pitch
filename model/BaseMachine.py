@@ -5,21 +5,36 @@ This module defines a base class for (T-V-M) models in our location_TVM clone
 import uuid
 from datetime import datetime
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy import Column, DateTime, String
+from sqlalchemy import Column, DateTime, String, Boolean
 import model
+from sqlalchemy.orm import relationship
+# from model.BaseMachine import Base
+
+
+
 # from os import getenv
 
 time = "%Y-%m-%dT%H:%M:%S.%f"
 Base = declarative_base()
 
-class BaseMachine:
+class BaseMachine(Base):
     """
         A base class for (T-V-M) models in our location_TVM clone
     """
-    #  models.storage_t == "db"
+    __tablename__ = 'machines'
     id = Column(String(60), primary_key=True)
     created_at = Column(DateTime, default=datetime.utcnow())
     updated_at = Column(DateTime, default=datetime.utcnow())
+    reserved = Column(Boolean, default=False)
+    __mapper_args__ = {
+        'polymorphic_identity': 'machines'
+    }
+    # Relationships to specific types of machines
+    bike = relationship("Bike", back_populates="machines") # , uselist=False, cascade="all, delete-orphan"
+    motor = relationship("Motor", back_populates="machines")
+    scooter = relationship("Scooter", back_populates="machines")
+    reservations = relationship("Reservation", back_populates="machines")
+
 
     def __init__(self, *args, **kwargs):
         """

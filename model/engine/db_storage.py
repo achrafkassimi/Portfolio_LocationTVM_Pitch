@@ -7,6 +7,9 @@ from model.BaseMachine import BaseMachine, Base
 from model.Scooter import Scooter
 from model.Motor import Motor
 from model.Bike import Bike
+from model.CalendarDate import CalendarDate
+from model.Reservation import Reservation
+from model.Customer import Customer
 # from os import getenv
 # import sqlalchemy
 from sqlalchemy.orm import Session
@@ -14,7 +17,8 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
 from sqlalchemy import select, update, delete, values
 
-classes = {"Scooter": Scooter, "Motor": Motor, "Bike": Bike}
+
+classes = {"Scooter": Scooter, "Motor": Motor, "Bike": Bike, "CalendarDate": CalendarDate, "Reservation": Reservation, "Customer": Customer}
 
 class DBStorage:
     """
