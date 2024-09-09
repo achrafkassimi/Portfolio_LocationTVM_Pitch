@@ -8,8 +8,8 @@ from sqlalchemy import create_engine, Column, Integer, String, Date, Boolean, Fo
 from sqlalchemy.orm import relationship
 
 
-# BaseMachine, 
-class Motor(Base):
+
+class Motor(BaseMachine,Base):
     """
     Represent a Motor.
 
@@ -22,18 +22,19 @@ class Motor(Base):
         img = ??
     """
     __tablename__ = 'motor'
-    id = Column(String(60), ForeignKey('machines.id'), primary_key=True)
+    # id = Column(String(60), ForeignKey('machines.id'), primary_key=True)
     name = Column(String(128), nullable=False)
     code_model = Column(String(128), nullable=False)
     Speed_max = Column(String(128), nullable=False)
     Puissance = Column(String(128), nullable=False)
     detail = Column(String(128), nullable=False)
     # available_dates = Column(String(60), unique=False)  # Store available dates as a JSON string
-    __mapper_args__ = {
-        'polymorphic_identity': 'motor',
-    }
+    # __mapper_args__ = {
+    #     'polymorphic_identity': 'motor',
+    # }
 
-    reservations = relationship("machines", back_populates="motor")
+    # machine = relationship("BaseMachine", back_populates="motors")
+    reservation = relationship("Reservation", back_populates="motor")
 
     
     # image = ??

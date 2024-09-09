@@ -3,16 +3,18 @@
 Module for console
 """
 import cmd
+from datetime import datetime
 import shlex
 import re
 import ast
 import model
 from model.__init__ import storage
-from model.BaseMachine import BaseMachine
+from model.Reservation import Reservation
 from model.Scooter import Scooter
 from model.Motor import Motor
 from model.Bike import Bike
-from sqlalchemy.orm import sessionmaker
+from model.Customer import Customer
+# from sqlalchemy.orm import sessionmaker
 
 class LocationTVM_Command(cmd.Cmd):
     """
@@ -21,7 +23,15 @@ class LocationTVM_Command(cmd.Cmd):
     classes
     """
     prompt = "(Location_TVM) "
-    valid_classes = ["BaseMachine", "Scooter", "Motor", "Bike", "CalendarDate", "Reservation", "Customer"]
+    valid_classes = ["Scooter", "Motor", "Bike", "Reservation", "Customer"]
+    # Create a registry to map table names to model classes
+    model_registry = {
+        'Bike': Bike,
+        'Motor': Motor,
+        'Customer': Customer,
+        'Scooter': Scooter,
+        'Reservation': Reservation
+    }
 
     def emptyline(self):
         """
@@ -42,9 +52,10 @@ class LocationTVM_Command(cmd.Cmd):
         print('Exiting...')
         return True
 
-    def do_how(self, line): # , line for print sum line
+    def do_how(self, line):
         """
         function help
+        # (, line) for print sum line
         just help name function "help create" ==> comment in ths function
         """
         print("quit command to exit the program")
@@ -55,12 +66,34 @@ class LocationTVM_Command(cmd.Cmd):
         # print("")
         # print("")
         # print("")
-    
+
+    # Create a function to return attributes (columns) of a table
+    def get_table_attributes(self, arg):
+        """
+        Returns the attribute (column) names of a SQLAlchemy table class.
+        
+        :param table_class: The SQLAlchemy table class (e.g., User)
+        :return: List of column names
+        """
+        # table_class = arg.split(" ")[0]
+        # print(table_class)
+        table = self.model_registry.get(arg)
+        if table is None:
+            print(f"No model class found for table: {table}")
+            return
+
+        test = [column.name for column in table.__table__.columns]
+        # print(test)
+        return test
+
     def do_create(self, arg):
         """
-        Create a new instance and save it to the DB data mysql
-        Usage:      create <class_name> parameter1=".." parameter2=".." ...
-        example:    create Bike name="" code_model="" Speed_max="" Puissance="" detail=""
+        add new Customer | Bike | Scooter | Motor
+                Usage: create <class_name> parameter1=".." parameter2=".."  ...
+            example 'Customer': create Customer fname=".." email=".."
+            example 'Bike':     create  Bike	 name=".."	code_model=".."	Speed_max=".."	Puissance=".."	detail=".."	|| d'not use ths parameter 'id' 'created_at' 'updated_at' 'reserved'
+            example 'Scooter':  create  Scooter  name=".."	code_model=".."	Speed_max=".."	Puissance=".."	detail=".."	|| d'not use ths parameter 'id' 'created_at' 'updated_at' 'reserved'
+            example 'Motor':    create  Motor    name=".."	code_model=".."	Speed_max=".."	Puissance=".."	detail=".."	|| d'not use ths parameter 'id' 'created_at' 'updated_at' 'reserved'
         """
         try:
             class_name = arg.split(" ")[0]
@@ -93,12 +126,124 @@ class LocationTVM_Command(cmd.Cmd):
             else:
                 new_instance = eval(class_name)(**kwargs)
             storage.new(new_instance)
-            # print(new_instance.id)
+            # print(new_instance)
             storage.save()
-            
+
         except ValueError:
             print(ValueError)
             return
+
+
+    def do_create_reservation(self, arg):
+        """
+        Add a new reservation:
+        Usage: create_reservation <name_class> <customer_id> <bike_id|motor_id|scooter_id> <start_date YYYY-MM-DD> <end_date YYYY-MM-DD> <prix>
+        Example: create_reservation Reservation customer_id="1" bike_id="1" start_date="2024-09-01" end_date="2024-09-07" prix="100"
+        """
+        try:
+            commands = arg.split(" ")
+            if len(commands) < 6:
+                print("** Missing parameters for reservation **")
+                return
+
+            # Extract the class name (expected to be 'Reservation')
+            class_name = commands[0]
+            if class_name != "Reservation":
+                print("** Invalid class name, expected 'Reservation' **")
+                return
+
+            kwargs = {}
+            for cmd in commands[1:]:
+                key_value = cmd.split("=")
+                if len(key_value) == 2:
+                    key, value = key_value
+                    value = value.strip('"')  # Remove quotes if wrapped
+                    kwargs[key] = value
+                else:
+                    print("** Invalid key-value format **")
+                    return
+
+            # Validate customer_id
+            customer_id = kwargs.get("customer_id")
+            if not customer_id:
+                print("** customer_id is missing **")
+                return
+            customer = model.storage.get(Customer, int(customer_id))
+            # print(customer)
+            if customer is None:
+                print("** Customer not found **")
+                return
+
+            # Validate id_machine
+            machine_id = kwargs.get("bike_id") or kwargs.get("motor_id") or kwargs.get("scooter_id")
+            if not machine_id:
+                print("** Machine ID (bike, motor, or scooter) is missing **")
+                return
+
+            bike = model.storage.get(Bike, machine_id) if kwargs.get("bike_id") else None
+            motor = model.storage.get(Motor, machine_id) if kwargs.get("motor_id") else None
+            scooter = model.storage.get(Scooter, machine_id) if kwargs.get("scooter_id") else None
+
+            if bike is None and motor is None and scooter is None:
+                print("** Machine not found **")
+                return
+
+            # Validate date formats
+            try:
+                start_date = datetime.strptime(kwargs.get("start_date"), "%Y-%m-%d").date()
+                end_date = datetime.strptime(kwargs.get("end_date"), "%Y-%m-%d").date()
+                print(start_date, end_date)
+            except ValueError:
+                print("** Invalid date format, expected YYYY-MM-DD **")
+                return
+
+            # Validate prix
+            prix = kwargs.get("prix")
+            if not prix or not prix.isdigit():
+                print("** Invalid or missing price **")
+                return
+            prix = int(prix)
+
+            # Check if the customer already has an active reservation
+            existing_reservations = model.storage.all(Reservation)
+            for key, reservation in existing_reservations.items():
+                if reservation.customer_id == int(customer_id) and reservation.end_date > datetime.now().date():
+                    print("** Customer already has an active reservation **")
+                    return
+
+            # Check if the machine is already reserved during the requested dates
+            for reservation in existing_reservations.values():
+                reservation_start_date = reservation.start_date.date() if isinstance(reservation.start_date, datetime) else reservation.start_date
+                reservation_end_date = reservation.end_date.date() if isinstance(reservation.end_date, datetime) else reservation.end_date
+
+                if ((reservation.bike_id == (bike.id if bike else None)) or
+                    (reservation.motor_id == (motor.id if motor else None)) or
+                    (reservation.scooter_id == (scooter.id if scooter else None))) and (
+                    start_date <= reservation_end_date and end_date >= reservation_start_date):
+                    print("** Machine is already reserved during these dates **")
+                    return
+
+            # Create the new reservation
+            new_reservation = Reservation(
+                customer_id=customer_id,
+                bike_id=bike.id if bike else None,
+                motor_id=motor.id if motor else None,
+                scooter_id=scooter.id if scooter else None,
+                start_date=start_date,
+                end_date=end_date,
+                prix=prix
+            )
+
+            # Save the reservation
+            model.storage.new(new_reservation)
+            model.storage.save()
+            print("Reservation created successfully")
+
+        except Exception as e:
+            print(f"Error: {e}")
+            return
+
+
 
     def do_show(self, arg):
         """

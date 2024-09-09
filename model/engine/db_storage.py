@@ -3,11 +3,11 @@
 Contains the class DBStorage
 """
 import model
-from model.BaseMachine import BaseMachine, Base
+from model.BaseMachine import Base
 from model.Scooter import Scooter
 from model.Motor import Motor
 from model.Bike import Bike
-from model.CalendarDate import CalendarDate
+# from model.CalendarDate import CalendarDate
 from model.Reservation import Reservation
 from model.Customer import Customer
 # from os import getenv
@@ -15,14 +15,14 @@ from model.Customer import Customer
 from sqlalchemy.orm import Session
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
-from sqlalchemy import select, update, delete, values
+# from sqlalchemy import select, update, delete, values
 
 
-classes = {"Scooter": Scooter, "Motor": Motor, "Bike": Bike, "CalendarDate": CalendarDate, "Reservation": Reservation, "Customer": Customer}
+classes = {"Scooter": Scooter, "Motor": Motor, "Bike": Bike,"Reservation": Reservation, "Customer": Customer}
 
 class DBStorage:
     """
-    interaacts with the MySQL database
+    interacts with the MySQL database
     """
     __engine = None
     __session = None
@@ -52,7 +52,8 @@ class DBStorage:
             if cls is None or cls is classes[clss] or cls is clss: 
                 objs = self.__session.query(classes[clss]).all()
                 for obj in objs:
-                    key = obj.__class__.__name__ + '.' + obj.id
+                    # key = obj.__class__.__name__ + '.' + obj.id
+                    key = obj.__class__.__name__ + '.' + str(obj.id)
                     new_dict[key] = obj
         return new_dict
 
@@ -96,17 +97,21 @@ class DBStorage:
         None if not found
         """
         if cls not in classes.values(): # classes.keys()
-            print(cls)
-            print(classes.keys())
+            # print(cls)
+            # print(classes.keys())
+            # print(classes.values())
             return None
-        print("test is in class")
-        all_cls = model.storage.all(cls)
-        print(all_cls)
-        for value in all_cls.values():
-            if (value.id == id):
-                return value
+        # print("test is in class")
+        # all_cls = self.all(cls)
 
-        return None
+        # Query the database for the object by `id`
+        obj = self.__session.query(cls).get(id)  # Directly query the object by ID
+        
+        if obj:
+            # Convert the object to a dictionary, excluding private attributes
+            # obj_dict = {key: value for key, value in vars(obj).items() if not key.startswith('_')}
+            return obj  # Return the dictionary of key-value pairs
+        return None  # Return None if the object is not found
 
     def count(self, cls=None):
         """

@@ -2,9 +2,8 @@
 """
 Defines the User class.
 """
-from model.BaseMachine import BaseMachine, Base
+from model.BaseMachine import Base
 from sqlalchemy import Column, String, Integer
-from sqlalchemy.orm import column_property
 from sqlalchemy.orm import relationship
 
 class Customer(Base):
@@ -29,30 +28,3 @@ class Customer(Base):
     # def __init__(self, *args, **kwargs):
     #     """initializes User"""
     #     super().__init__(*args, **kwargs)    
-        
-    # def reserve_machine(self, machine, reserve_date):
-    #     if reserve_date in self.reservations:
-    #         print(f"{self.name} already has a reservation on {reserve_date}.")
-    #         return False
-    #
-    #     if machine.reserve(reserve_date):
-    #         self.reservations[reserve_date] = machine
-    #         print(f"{self.name} successfully reserved Machine {machine.machine_id} on {reserve_date}.")
-    #         return True
-    #     else:
-    #         print(f"Machine {machine.machine_id} is not available on {reserve_date}.")
-    #         return False
-
-    # def release_machine(self, release_date):
-    #     if release_date in self.reservations:
-    #         machine = self.reservations.pop(release_date)
-    #         machine.release(release_date)
-    #         print(f"{self.name} released Machine {machine.machine_id} on {release_date}.")
-    #     else:
-    #         print(f"{self.name} does not have any reservation on {release_date}.")
-
-    # def __str__(self):
-    #     reservations = ", ".join(f"{date}: Machine {machine.machine_id}" for date, machine in self.reservations.items())
-    #     return f"Customer {self.name} reservations: {reservations if reservations else 'None'}"
-
-
