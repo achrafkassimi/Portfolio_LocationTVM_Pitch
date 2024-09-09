@@ -1,6 +1,10 @@
 {
   "liveServer.settings.port": 5501,
+<<<<<<< HEAD
   "cSpell.words": [
     "sqlalchemy"
   ]
+=======
+  "editor.guides.indentation": true
+>>>>>>> 41c53e0431244a08d39104d183f47e406c811100
 }
