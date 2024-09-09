@@ -1038,11 +1038,11 @@ footer a {
 
 .how-does-it-work {
   padding: 20px;
-  background-color: #f0f0f0;
+  background-color: #37e010;
 }
 
 .how-does-it-work-inverted {
-  background-color: #e0e0e0;
+  background-color: #34d610;
 }
 
 .row {
@@ -1067,7 +1067,7 @@ h2 {
 
 ol {
   list-style-type: none;
-  padding: 0;
+  padding: 10;
   display: flex;
   justify-content: space-between;
 }
@@ -1078,11 +1078,11 @@ li {
 }
 
 .box {
-  background-color: #fff;
+  background-color: #b4afaf;
   padding: 20px;
   border-radius: 8px;
   text-align: center;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 6px rgba(104, 230, 0, 0.9);
 }
 
 .icon-search, .icon-route {
@@ -1097,7 +1097,7 @@ h3 {
 
 p {
   font-size: 1rem;
-  color: #666;
+  color: #000000;
 }
 
 .show-for-large-up {
