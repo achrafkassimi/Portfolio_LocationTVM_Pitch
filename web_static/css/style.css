@@ -945,9 +945,14 @@ label {
 /* Reservation css  */
 
 /* Container styles */
+
+.container_R{
+  background-image: url("../image/pedro-pereira-pplGVkdKQbY-unsplash.jpg");
+  width: 100%;
+
+}
 .container_R {
   width: 100%; /* Allow the container to take up the full width of the screen */
-  max-width: 900px; /* Set a maximum width for the container */
   margin: 0 auto; /* Center the container horizontally */
   padding: 0 15px; /* Add horizontal padding */
   margin-bottom: 1rem;
@@ -957,11 +962,11 @@ label {
 .content_R {
   max-width: 600px;
   margin: 20px auto 0; /* Margin at the top, center horizontally */
-  background-color: #4eb376a3;
+  background-color: #48805e16;
   padding: 20px;
-  border-radius: 10px;
-  box-shadow: 10px 10px 10px rgba(1, 1, 1, 0.567);
+  box-shadow: 10px 10px 10px 10px rgba(1, 1, 1, 0.567);
   margin-bottom: 1rem;
+  color: white;
 }
 
 /* Form container styles */
@@ -1038,11 +1043,12 @@ footer a {
 
 .how-does-it-work {
   padding: 20px;
-  background-color: #37e010;
+  background-color: #59c557;
 }
 
 .how-does-it-work-inverted {
-  background-color: #34d610;
+  background-color: #59c557;
+  border-radius: 10px;
 }
 
 .row {
@@ -1065,24 +1071,28 @@ h2 {
   text-align: center;
 }
 
-ol {
+#box_of_boxes{
   list-style-type: none;
   padding: 10;
   display: flex;
   justify-content: space-between;
 }
 
-li {
+#boxes{
   flex: 1;
   margin: 0 10px;
 }
 
-.box {
-  background-color: #b4afaf;
+.box_i{
+  margin: 3rem 0 3rem 0;
+  background-color: #59c557;
   padding: 20px;
   border-radius: 8px;
   text-align: center;
-  box-shadow: 0 4px 6px rgba(104, 230, 0, 0.9);
+  box-shadow: 0 4px 6px rgba(84, 89, 80, 0.9);
+}
+.detalis p, .detalis h3{
+  color: black;
 }
 
 .icon-search, .icon-route {
@@ -1093,11 +1103,14 @@ li {
 h3 {
   font-size: 1.5rem;
   margin-top: 15px;
+  color: white;
+  text-decoration-line: underline;
+  margin-bottom: 1rem;
 }
 
 p {
   font-size: 1rem;
-  color: #000000;
+  color: #fcfcfc;
 }
 
 .show-for-large-up {
