@@ -9,7 +9,7 @@ Build your portfolio project (Week 3): Presentation (weight: 3)
 Cleanup your Portfolio Project
 Portfolio Project Blog post
 
-## Rental TVM, what is it
+## Rental TVM, what is it ?
 
 Rental TVM is a platform for connecting individuals for the rental of bicycles, scooters and scooters. It aims to simplify access to environmentally friendly transportation by connecting owners with urban or rural users looking for occasional mobility solutions. The objective is to promote sustainable and flexible mobility, adapted to the needs of each individual. 
 
