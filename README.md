@@ -11,7 +11,7 @@ Portfolio Project Blog post
 
 ## Location TVM, what is it ?
 
-Location TVM is a platform for connecting individuals for the rental of bicycles, scooters and scooters. It aims to simplify access to environmentally friendly transportation by connecting owners with urban or rural users looking for occasional mobility solutions. The objective is to promote sustainable and flexible mobility, adapted to the needs of each individual. 
+Location TVM is a platform for connecting individuals for the rental of bikes, scooters and motos. It aims to simplify access to environmentally friendly transportation by connecting owners with urban or rural users looking for occasional mobility solutions. The objective is to promote sustainable and flexible mobility, adapted to the needs of each individual. 
 
 Build your "Location/rental TVM/SBM"
 
