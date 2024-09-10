@@ -9,7 +9,7 @@ from sqlalchemy.orm import relationship
 
 
 
-class Scooter(BaseMachine,Base):
+class Scooter(BaseMachine, Base):
     """
     Represent a Scooter.
 

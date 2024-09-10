@@ -2,11 +2,11 @@
 """
 Defines the User class.
 """
-from model.BaseMachine import Base
+from model.BaseMachine import BaseMachine, Base
 from sqlalchemy import Column, String, Integer
 from sqlalchemy.orm import relationship
 
-class Customer(Base):
+class Customer(BaseMachine, Base):
     """
     Represent a Customer.
 
@@ -14,7 +14,7 @@ class Customer(Base):
 
     """
     __tablename__ = 'customer'
-    id = Column(Integer, primary_key=True, autoincrement=True)
+    # id = Column(Integer, primary_key=True, autoincrement=True)
     fname = Column(String(60), nullable=False)
     # lname = Column(String(60), nullable=False)
     # Num_tel = Column(String(60), nullable=False)
@@ -25,6 +25,6 @@ class Customer(Base):
     # Relationship to Reservation
     reservation = relationship('Reservation', back_populates='customer')
 
-    # def __init__(self, *args, **kwargs):
-    #     """initializes User"""
-    #     super().__init__(*args, **kwargs)    
+    def __init__(self, *args, **kwargs):
+        """initializes User"""
+        super().__init__(*args, **kwargs)    

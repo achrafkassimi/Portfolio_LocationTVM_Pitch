@@ -54,18 +54,18 @@ class LocationTVM_Command(cmd.Cmd):
 
     def do_how(self, line):
         """
-        function help
-        # (, line) for print sum line
-        just help name function "help create" ==> comment in ths function
+        Display help information for commands
         """
-        print("quit command to exit the program")
-        print("EOF (Ctrl+D) signal to exit the program")
-        # print("")
-        # print("")
-        # print("")
-        # print("")
-        # print("")
-        # print("")
+        print("Commands:")
+        print("  quit        - Exit the program")
+        print("  EOF         - Exit the program (Ctrl+D)")
+        print("  create      - Create a new instance")
+        print("  show        - Show an instance by ID")
+        print("  destroy     - Delete an instance by ID")
+        print("  all         - Show all instances or instances of a class")
+        print("  count       - Count instances of a class or all classes")
+        print("  update      - Update an instance's attributes")
+        print("  all_class   - Show all class names")
 
     # Create a function to return attributes (columns) of a table
     def get_table_attributes(self, arg):
@@ -80,11 +80,11 @@ class LocationTVM_Command(cmd.Cmd):
         table = self.model_registry.get(arg)
         if table is None:
             print(f"No model class found for table: {table}")
-            return
+            return []
 
-        test = [column.name for column in table.__table__.columns]
+        # test = [column.name for column in table.__table__.columns]
         # print(test)
-        return test
+        return [column.name for column in table.__table__.columns]
 
     def do_create(self, arg):
         """
@@ -120,7 +120,7 @@ class LocationTVM_Command(cmd.Cmd):
                         continue
                 kwargs[key] = value
             # print(kwargs)
-            
+
             if kwargs == {}:
                 new_instance = eval(class_name)()
             else:
@@ -242,8 +242,6 @@ class LocationTVM_Command(cmd.Cmd):
         except Exception as e:
             print(f"Error: {e}")
             return
-
-
 
     def do_show(self, arg):
         """
