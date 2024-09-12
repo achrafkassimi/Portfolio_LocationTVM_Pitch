@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Frequently Asked Questions</title>
+    <link rel="stylesheet" href="/web_static/css/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+      integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+  <body>
+    <nav class="nav">
+      <div class="container flex1">
+        <div class="logo">
+          <img src="image/logo.png" alt="" width="200" />
+        </div>
+        <div class="menu">
+          <div class="main_list" id="mainListDiv">
+            <ul>
+              <li><a href="#">Home</a></li>
+              <li><a href="#">Blog</a></li>
+              <li><a href="Reservation.html">Reservation</a></li>
+              <li><a href="#">Offer</a></li>
+              <li><a href="Tarif.html">Tarif</a></li>
+              <li><a href="About.html">About Us</a></li>
+              <li><a href="FAQ.html">FAQ</a></li>
+              <li><a href="Contact.html">Contact Us</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="media_button">
+          <i class="fas fa-bars" id="mediaButton"></i>
+        </div>
+
+        <div class="account flex1">
+          <i class="far fa-unlock-alt"></i>
+          <button>
+            <p><a href="Login.html">Login</a></p>
+          </button>
+          <button>
+            <p><a href="Registre.html">Registre</a></p>
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <div class="wrapper">
+      <p>The Begninning of a New Asset class</p>
+      <h1>Frequently Asked Questions</h1>
+
+      <div class="faq">
+        <button class="accordion">
+          What is Krushi?
+          <i class="fa-solid fa-chevron-down"></i>
+        </button>
+        <div class="pannel">
+          <p>
+            Krushi is a Public Charitable Trust designed to carry out farming on
+            extensive scale Natural & Sustainable methods.
+          </p>
+        </div>
+      </div>
+
+      <div class="faq">
+        <button class="accordion">
+          How does it work?
+          <i class="fa-solid fa-chevron-down"></i>
+        </button>
+        <div class="pannel">
+          <p>
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Facilis
+            saepe molestiae distinctio asperiores cupiditate consequuntur dolor
+            ullam, iure eligendi harum eaque hic corporis debitis porro
+            consectetur voluptate rem officiis architecto.
+          </p>
+        </div>
+      </div>
+
+      <div class="faq">
+        <button class="accordion">
+          What are the major challanges of current agriculture?
+          <i class="fa-solid fa-chevron-down"></i>
+        </button>
+        <div class="pannel">
+          <p>
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Facilis
+            saepe molestiae distinctio asperiores cupiditate consequuntur dolor
+            ullam, iure eligendi harum eaque hic corporis debitis porro
+            consectetur voluptate rem officiis architecto.
+          </p>
+        </div>
+      </div>
+
+      <div class="faq">
+        <button class="accordion">
+          How does the Krushi address the above challanges?
+          <i class="fa-solid fa-chevron-down"></i>
+        </button>
+        <div class="pannel">
+          <p>
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Facilis
+            saepe molestiae distinctio asperiores cupiditate consequuntur dolor
+            ullam, iure eligendi harum eaque hic corporis debitis porro
+            consectetur voluptate rem officiis architecto.
+          </p>
+        </div>
+      </div>
+
+      <div class="faq">
+        <button class="accordion">
+          How can I be a part of Krushi?
+          <i class="fa-solid fa-chevron-down"></i>
+        </button>
+        <div class="pannel">
+          <p>
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Facilis
+            saepe molestiae distinctio asperiores cupiditate consequuntur dolor
+            ullam, iure eligendi harum eaque hic corporis debitis porro
+            consectetur voluptate rem officiis architecto.
+          </p>
+        </div>
+      </div>
+
+      <div class="faq">
+        <button class="accordion">
+          How does it work?
+          <i class="fa-solid fa-chevron-down"></i>
+        </button>
+        <div class="pannel">
+          <p>
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Facilis
+            saepe molestiae distinctio asperiores cupiditate consequuntur dolor
+            ullam, iure eligendi harum eaque hic corporis debitis porro
+            consectetur voluptate rem officiis architecto.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      var acc = document.getElementsByClassName("accordion");
+      var i;
+
+      for (i = 0; i < acc.length; i++) {
+        acc[i].addEventListener("click", function () {
+          this.classList.toggle("active");
+          this.parentElement.classList.toggle("active");
+
+          var pannel = this.nextElementSibling;
+
+          if (pannel.style.display === "block") {
+            pannel.style.display = "none";
+          } else {
+            pannel.style.display = "block";
+          }
+        });
+      }
+    </script>
+
+    <footer>
+      <div class="scontainer grid">
+        <div class="box">
+          <div class="logo">
+            <img src="image/logo.png" alt="" width="200" />
+          </div>
+          <h3>+212701106060</h3>
+          <small>Email : LocationTVM@gmail.com</small>
+        </div>
+
+        <div class="box">
+          <h3>Customer Services</h3>
+          <div class="flex1">
+            <ul>
+              <a href="About.html"><li>Help</li></a>
+              <a href="Contact.html"><li>Contact Us</li></a>
+              <a href="index.html"><li>Warranty</li></a>
+              <a href="About.html"><li>Terms & Conditions</li></a>
+            </ul>
+            <ul>
+              <a href="Login.html"><li>My Account</li></a>
+              <a href="index.html"><li>Arder Status</li></a>
+              <li>Payment</li>
+              <a href="Reservation.html"><li>Oders</li></a>
+              <a href="index.html"><li>Cancellation</li></a>
+            </ul>
+          </div>
+        </div>
+
+        <div class="box">
+          <h3>Let's stay in touch</h3>
+          <div class="input flex1">
+            <input type="email" placeholder="Email Address" />
+            <i class="far fa-long-arrow-right"></i>
+          </div>
+          <div class="social_media">
+            <i class="fab fa-facebook-f"></i>
+            <i class="fab fa-instagram"></i>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
