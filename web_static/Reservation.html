@@ -2,18 +2,18 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Contact Us</title>
     <link rel="stylesheet" href="css/style.css" />
-    <link rel="stylesheet" href="script.js">
-    <link rel="stylesheet" href="script.js">
+    <link rel="stylesheet" href="script.js" />
+
     <link
       rel="stylesheet"
       href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
       integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
       crossorigin="anonymous"
     />
-    
 
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"
@@ -52,7 +52,7 @@
               <li><a href="#">Offer</a></li>
               <li><a href="Tarif.html">Tarif</a></li>
               <li><a href="About.html">About Us</a></li>
-              <li><a href="#">FAQ</a></li>
+              <li><a href="FAQ.html">FAQ</a></li>
               <li><a href="Contact.html">Contact Us</a></li>
             </ul>
           </div>
@@ -74,52 +74,82 @@
     </nav>
     <div class="container_R">
       <div class="content_R">
-          <h1 id="title_R">Réservation</h1>
-          <form action="">
-              <div class="form-container_R">
-              <div class="formControl_R">
-                  <label for="first_name">First Name</label>
-                  <input id="first_name" name="first_name" placeholder="Enter your first name..." type="text">
-              </div>
-              <div class="formControl_R">
-                  <label for="last_name">Last Name</label>
-                  <input id="last_name" name="last_name" placeholder="Enter your last name..." type="text">
-              </div>
-              <div class="formControl_R">
-                  <label for="Email">Email</label>
-                  <input id="Email" name="Email" placeholder="nabilhadk@gmail.com" type="email">
-              </div>
-              <div class="formControl_R">
-                <label for="phone">Phone</label>
-                <input type="tel" id="phone" name="phone" required placeholder="Enter your Phone..."/>
-                <span class="error" id="phone-error"></span>
-              </div>
-              <div class="formControl_R">
-                  <label for="adress">Adress</label>
-                  <textarea name="adress" id="adress" cols="33" rows="3" placeholder=" Enter your Adress..."></textarea>
-              </div>
-              <div class="formControl_R">
-                  <label for="City">City</label>
-                  <input id="City" name="City" placeholder="Enter your City..." type="text">
-              </div>
-              <div class="formControl_R">
-                <label for="time">Date</label>
-                <input id="date " name="date " type="date" value="2023-01-10">
-
-              </div>
-              <div class="formControl_R">
-                <label for="time">Time</label>
-                <input type="time" id="time" value="00:00">
-                <span class="error" id="time-error"></span>
-              </div>
-              
+        <h1 id="title_R">Réservation</h1>
+        <form action="">
+          <div class="form-container_R">
+            <div class="formControl_R">
+              <label for="first_name">First Name</label>
+              <input
+                id="first_name"
+                name="first_name"
+                placeholder="Enter your first name..."
+                type="text"
+              />
+            </div>
+            <div class="formControl_R">
+              <label for="last_name">Last Name</label>
+              <input
+                id="last_name"
+                name="last_name"
+                placeholder="Enter your last name..."
+                type="text"
+              />
+            </div>
+            <div class="formControl_R">
+              <label for="Email">Email</label>
+              <input
+                id="Email"
+                name="Email"
+                placeholder="nabilhadk@gmail.com"
+                type="email"
+              />
+            </div>
+            <div class="formControl_R">
+              <label for="phone">Phone</label>
+              <input
+                type="tel"
+                id="phone"
+                name="phone"
+                required
+                placeholder="Enter your Phone..."
+              />
+              <span class="error" id="phone-error"></span>
+            </div>
+            <div class="formControl_R">
+              <label for="adress">Adress</label>
+              <textarea
+                name="adress"
+                id="adress"
+                cols="33"
+                rows="3"
+                placeholder=" Enter your Adress..."
+              ></textarea>
+            </div>
+            <div class="formControl_R">
+              <label for="City">City</label>
+              <input
+                id="City"
+                name="City"
+                placeholder="Enter your City..."
+                type="text"
+              />
+            </div>
+            <div class="formControl_R">
+              <label for="time">Date</label>
+              <input id="date " name="date " type="date" value="2023-01-10" />
+            </div>
+            <div class="formControl_R">
+              <label for="time">Time</label>
+              <input type="time" id="time" value="00:00" />
+              <span class="error" id="time-error"></span>
+            </div>
           </div>
-          </form>
-          <div class="button_container_R">
-              <button id="btn_R" type="submit">Submit</button>
-          </div>
+        </form>
+        <div class="button_container_R">
+          <button id="btn_R" type="submit">Submit</button>
+        </div>
       </div>
-  </div>
+    </div>
 
     <!-- <div class="container_R">
       <h2>Réservation</h2>
@@ -172,12 +202,10 @@
           e.preventDefault();
           let hasError = false;
 
-          
           document.querySelectorAll(".error").forEach(function (error) {
             error.textContent = "";
           });
 
-          
           const name = document.getElementById("name").value;
           if (name === "") {
             document.getElementById("name-error").textContent =
@@ -185,7 +213,6 @@
             hasError = true;
           }
 
-          
           const email = document.getElementById("email").value;
           if (!email.includes("@")) {
             document.getElementById("email-error").textContent =
@@ -193,7 +220,6 @@
             hasError = true;
           }
 
-          
           const phone = document.getElementById("phone").value;
           if (phone.length < 10) {
             document.getElementById("phone-error").textContent =
@@ -201,7 +227,6 @@
             hasError = true;
           }
 
-          
           const date = document.getElementById("date").value;
           if (date === "") {
             document.getElementById("date-error").textContent =
@@ -209,7 +234,6 @@
             hasError = true;
           }
 
-          
           const time = document.getElementById("time").value;
           if (time === "") {
             document.getElementById("time-error").textContent =
@@ -217,7 +241,6 @@
             hasError = true;
           }
 
-          
           const guests = document.getElementById("guests").value;
           if (guests < 1) {
             document.getElementById("guests-error").textContent =
@@ -225,11 +248,10 @@
             hasError = true;
           }
 
-          
           if (!hasError) {
             document.getElementById("success-message").textContent =
               "Votre réservation a été envoyée avec succès !";
-            
+
             document.getElementById("reservation-form").reset();
           }
         });
