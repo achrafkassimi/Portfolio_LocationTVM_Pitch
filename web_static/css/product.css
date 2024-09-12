@@ -1,0 +1,45 @@
+.poducts{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    max-width: 100%;
+    margin: 0 auto;
+  }
+  
+  .product1_1 .pro1 a{
+    width: 25%;
+  }
+  .product1_1 .pro1 a img{
+    width: 95%;
+    border-radius:10px;
+    transition: .3s;
+  }
+  .product1_1 .pro1 a img:hover{
+    cursor: pointer;
+    transform: scale(1.03);
+  }
+  .poducts .product1_1{
+    max-width: 25%;
+    margin: 10px 0;
+  }
+  .poducts .product1_1 h4{
+      font-size: 100%;
+      margin: 10px 0;
+   
+  }
+  .price{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+  }
+  .info h4{
+    color: black;
+  }
+  .price h4{
+    color: black;
+  }
+  #gold{
+    color: gold;
+  }
