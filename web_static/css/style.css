@@ -33,6 +33,7 @@ nav {
 
 .logo img {
   margin-top: 20px;
+  margin-left: 0px;
 }
 
 nav ul {
@@ -237,6 +238,7 @@ button {
 .heading .line2 i {
   left: -100%;
 }
+
 
 .grid {
   display: grid;
@@ -815,12 +817,20 @@ label {
   gap: 1rem;
   width: 100%;
 }
+.part_2 h3{
+  color: black;
+}
+
 .info_tarif {
   display: flex;
   justify-content: space-between;
   align-items: start;
   padding: 3px;
 }
+#text_T{
+  color: black;
+}
+
 .line_t {
   height: 1px;
   background-color: #000000;
@@ -831,6 +841,7 @@ label {
 #text_comment {
   margin-top: 40px;
   font-size: 12px;
+  color: #000;
 }
 .btn_Abn {
   transition: 0.3s;
