@@ -370,7 +370,6 @@ ul {
 .wrapper {
   background-image: url("../image/back.jpg");
   background-size: cover;
-  height: 100vh;
   width: 100%;
   text-align: center;
   position: relative;
@@ -382,8 +381,6 @@ ul {
   top: 0;
   left: 0;
   width: 100%;
-  height: 100vh;
-  background: rgba(55, 179, 52, 0.83);
 }
 
 .wrapper .scontainer {
