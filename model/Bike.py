@@ -28,6 +28,7 @@ class Bike(BaseMachine,Base):
     Speed_max = Column(String(128), nullable=False)
     Puissance = Column(String(128), nullable=False)
     detail = Column(String(128), nullable=False)
+    reserved = Column(Boolean, default=False)
     # available_dates = Column(Boolean, unique=False)
     # __mapper_args__ = {
     #     'polymorphic_identity': 'bike',
