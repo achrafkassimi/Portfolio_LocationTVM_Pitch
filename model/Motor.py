@@ -28,6 +28,7 @@ class Motor(BaseMachine,Base):
     Speed_max = Column(String(128), nullable=False)
     Puissance = Column(String(128), nullable=False)
     detail = Column(String(128), nullable=False)
+    reserved = Column(Boolean, default=False)
     # available_dates = Column(String(60), unique=False)  # Store available dates as a JSON string
     # __mapper_args__ = {
     #     'polymorphic_identity': 'motor',
