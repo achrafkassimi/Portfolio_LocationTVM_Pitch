@@ -21,6 +21,7 @@
 .informatin{
     display: flex;
     flex-direction: column;
+
     gap: 0.1rem;
 }
 label{
@@ -34,4 +35,18 @@ label{
 }
 .data p a{
     text-decoration: none;
+}
+.lebel1{
+    border: black solid;
+    background-color: #fff;
+    text-align: center;
+    width:400px;
+}
+label{
+    z-index: 100;
+    color: white;
+    padding: 5px;
+}
+#lb1{
+    color: black;
 }

@@ -24,31 +24,37 @@
                <h2 id="name">admine </h2>
             </li>
             <li class="active">
-                <a href="#" >
+                <a href="admins.html" >
                     <i class="fas fa-home"></i>
                     <p>Dashboard</p>
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href="all_admins.html">
                     <i class="fas fa-user-group"></i>
                     <p>admines</p>
                 </a>
             </li>
             <li>
-                <a href="">
+                <a href="admis._informatiom.html">
                     <i class="fas fa-table"></i>
                     <p>informations</p>
                 </a>
             </li>
             <li>
-                <a href="#chartSection">
+                <a href="admins.html#chartSection">
                     <i class="fas fa-chart-pie"></i>
                     <p>charts</p>
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href="User_admin.html">
+                    <i class="fas fa-user"></i>
+                    <p>Users</p>
+                </a>
+            </li>
+            <li>
+                <a href="admins.html">
                     <i class="fas fa-star"></i>
                     <p>favorite</p>
                 </a>
@@ -71,19 +77,13 @@
             <div class="box">
                 <i class="fas fa-user"></i>
                 <div class="data">
-                    <p>Other admines </p>
-                </div>
-            </div>
-            <div class="box">
-                <i class="fas fa-table"></i>
-                <div class="data">
-                    <p>My informations</p>
+                    <a href="all_admins.html" style="color: white; text-decoration: none; font-size: 30px;" ><p>admines </p></a>
                 </div>
             </div>
             <div class="box">
                 <i class="fas fa-chart-pie"></i>
                 <div class="data">
-                    <p>charts</p>
+                    <a href="admins.html#chartSection" style="color: white; text-decoration: none;"><p>charts</p></a>
                 </div>
             </div>
            
@@ -96,15 +96,21 @@
             <div class="allinformations">
               <div class="informatin">
                 <label for="client_name">Your first Name :</label>
-                <input type="text" value="(firste_clent_name)" />
+                <div class="lebel1">
+                    <label for="firstname" id="lb1">(my first name)</label>
+                </div>
               </div>
               <div class="informatin">
                 <label for="client_name">Your Laste Name :</label>
-                <input type="text" value="(laste_client_name)" />
+                <div class="lebel1">
+                    <label for="firstname" id="lb1">(Laste name)</label>
+                </div>
               </div>
               <div class="informatin">
                 <label for="client_name">Your email :</label>
-                <input type="email" value="(client_email)" />
+                <div class="lebel1">
+                    <label for="firstname" id="lb1">()email</label>
+                </div>
               </div>
               <div class="stars">
                 <h1>admine</h1>
@@ -118,16 +124,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 <script src="https://unpkg.com/bs-brain@2.0.4/components/charts/chart-5/assets/controller/chart-5.js"></script>
-<script>
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            target.scrollIntoView({
-                behavior: 'smooth'
-            });
-        });
-    });
-</script>
+
 </body>
 </html>

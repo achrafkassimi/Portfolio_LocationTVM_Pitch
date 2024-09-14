@@ -140,3 +140,13 @@ td{
 .py-md-5{
     padding-top: 0px;
 }
+.admins{
+    margin-top: 1rem;
+    padding: 15px;
+
+}
+.all_admins{
+    background-color: #7cd3cd83;
+    width: 100%;
+    height: 60%;
+}
