@@ -3,12 +3,26 @@
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
+    gap: 0.5rem;
     max-width: 100%;
     margin: 0 auto;
+    max-width: 90%;
+    margin-top:2rem;
+    margin-bottom: 1rem; 
+    border: solid black; 
+    padding: 15px;
+  }
+  .product1_1{
+    border: black solid;
+    padding: 4px;
+    
+  }
+  .info{
+    margin-top: 10px;
   }
   
   .product1_1 .pro1 a{
-    width: 25%;
+    width: 50%;
   }
   .product1_1 .pro1 a img{
     width: 95%;
@@ -29,17 +43,20 @@
    
   }
   .price{
-    display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 90%;
+    width: 100%;
   }
   .info h4{
     color: black;
   }
   .price h4{
     color: black;
+    width: 100%;
+    text-align: center;
   }
-  #gold{
-    color: gold;
+  .price a button{
+    width: 100%;
+    text-align: center;
   }
+ 
