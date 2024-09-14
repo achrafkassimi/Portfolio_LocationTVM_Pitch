@@ -10,7 +10,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="../css/admins.css">
    
-    <title>User page</title>
+    
+    <title>user page</title>
 </head>
 <body class="body">
     <div class="menu">
@@ -19,7 +20,7 @@
                <div class="logo-box">
                     <img src="../image/172628_user_male_icon.png" alt="image">
                </div>
-               <h2 id="name">admin </h2>
+               <h2 id="name">admine </h2>
             </li>
             <li class="active">
                 <a href="#" >
@@ -30,17 +31,17 @@
             <li>
                 <a href="#">
                     <i class="fas fa-user-group"></i>
-                    <p>admin</p>
+                    <p>admines</p>
                 </a>
             </li>
             <li>
                 <a href="">
                     <i class="fas fa-table"></i>
-                    <p>information</p>
+                    <p>informations</p>
                 </a>
             </li>
             <li>
-                <a href="#chartSection">
+                <a href="#">
                     <i class="fas fa-chart-pie"></i>
                     <p>charts</p>
                 </a>
@@ -51,6 +52,7 @@
                     <p>favorite</p>
                 </a>
             </li>
+            
             <li class="sing_out">
                 <a href="index.html">
                     <i class="fas fa-sign-out"></i>
@@ -68,51 +70,58 @@
             <div class="box">
                 <i class="fas fa-user"></i>
                 <div class="data">
-                    <p>Other admins</p>
+                    <p>Other admines </p>
                 </div>
             </div>
             <div class="box">
                 <i class="fas fa-table"></i>
                 <div class="data">
-                    <a href="admis._informatiom.html" style="text-decoration: none;"><p>My information</p></a>
+                    <p>My informations</p>
                 </div>
             </div>
+            <div class="box">
+                <i class="fas fa-chart-pie"></i>
+                <div class="data">
+                    <p>charts</p>
+                </div>
+            </div>
+           
         </div>
         <div class="title">
             <h4>Site Analysis</h4>
+            
         </div>
         <!-- Chart 5 - Bootstrap Brain Component -->
-        <section id="chartSection" class="py-3 py-md-5" style="background-color: rgb(74, 90, 91);"> 
-            <div class="container" style="background-color: rgb(26, 123, 74); border-radius:10px;">
-                <div class="row justify-content-center">
-                    <div class="col-12 col-lg-9 col-xl-8 col-xxl-7">
-                        <div class="card widget-card border-light shadow-sm">
-                            <div class="card-body p-4">
-                                <div class="d-block d-sm-flex align-items-center justify-content-between mb-3">
-                                    <div class="mb-3 mb-sm-0">
-                                        <h5 class="card-title widget-card-title">Revenue</h5>
-                                    </div>
-                                    <div>
-                                        <select class="form-select text-secondary border-light-subtle">
-                                            <option value="1">Month</option>
-                                            <option value="2">Week</option>
-                                            <option value="3">Day</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div id="bsb-chart-5"></div>
-                            </div>
-                        </div>
-                    </div>
+<section class="py-3 py-md-5 " style="background-color: rgb(74, 90, 91);"> 
+    <div class="container" style="background-color: rgb(26, 123, 74); border-radius:10px;">
+      <div class="row justify-content-center">
+        <div class="col-12 col-lg-9 col-xl-8 col-xxl-7">
+          <div class="card widget-card border-light shadow-sm">
+            <div class="card-body p-4">
+              <div class="d-block d-sm-flex align-items-center justify-content-between mb-3">
+                <div class="mb-3 mb-sm-0">
+                  <h5 class="card-title widget-card-title">Revenue</h5>
                 </div>
+                <div>
+                  <select class="form-select text-secondary border-light-subtle">
+                    <option value="1">Month</option>
+                    <option value="2">Week</option>
+                    <option value="3">Day</option>
+                  </select>
+                </div>
+              </div>
+              <div id="bsb-chart-5"></div>
             </div>
-        </section>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-    <script src="https://unpkg.com/bs-brain@2.0.4/components/charts/chart-5/assets/controller/chart-5.js"></script>
-
-
+<script src="https://unpkg.com/bs-brain@2.0.4/components/charts/chart-5/assets/controller/chart-5.js"></script>
 </body>
 </html>

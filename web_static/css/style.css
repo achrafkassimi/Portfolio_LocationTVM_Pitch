@@ -1162,13 +1162,13 @@ img {
 
 .active,
 .accordion:hover {
-  background-color: #f1f7f5;
+  background-color: #1ee80b;
 }
 .pannel {
   padding: 0 2rem 2.5rem 2rem;
   background-color: white;
   overflow: hidden;
-  background-color: #f1f7f5;
+  background-color: #2ad803;
   display: none;
 }
 .pannel p {
