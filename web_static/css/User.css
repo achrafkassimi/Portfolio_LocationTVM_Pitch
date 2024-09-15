@@ -171,3 +171,17 @@ label{
     gap: 1rem;
 
 }
+.lebel1{
+    border: black solid;
+    background-color: #fff;
+    text-align: center;
+    width:400px;
+}
+label{
+    z-index: 100;
+    color: white;
+    padding: 5px;
+}
+#lb1{
+    color: black;
+}
