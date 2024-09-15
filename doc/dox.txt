@@ -13,3 +13,5 @@ According to a survey conducted by ADEME in 2019, some user profiles predominate
 
 Users of self-service electric scooters in Paris are the inhabitants of the city of Paris,
  adults and children over 12 years old 16, but also tourists. The 18-24 age group represents 50% of the users17.
+
+python -m web_dynamic.app

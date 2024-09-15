@@ -1,7 +1,9 @@
-absl-py==2.1.0
+absl-py==2.1.0                           
 asgiref==3.8.1
 attrs==24.2.0
+bcrypt==4.2.0
 blinker==1.8.2
+cachelib==0.13.0
 cffi==1.17.0
 click==8.1.7
 colorama==0.4.6
@@ -9,7 +11,11 @@ contourpy==1.3.0
 cycler==0.12.1
 Django==4.0.3
 Flask==3.0.3
-Flask-SQLAlchemy==3.1.1
+Flask-Bcrypt==1.0.1
+Flask-Login==0.6.3
+Flask-Session==0.8.0
+Flask-SQLAlchemy==3.0.2
+Flask-WTF==1.2.1
 flatbuffers==24.3.25
 fonttools==4.53.1
 greenlet==3.0.3
@@ -22,6 +28,7 @@ MarkupSafe==2.1.5
 matplotlib==3.9.2
 mediapipe==0.10.14
 ml-dtypes==0.4.0
+msgspec==0.18.6
 mysqlclient==2.2.4
 numpy==2.1.0
 opencv-contrib-python==4.10.0.84
@@ -40,3 +47,4 @@ sqlparse==0.5.1
 typing_extensions==4.12.2
 tzdata==2024.1
 Werkzeug==3.0.4
+WTForms==3.1.2
