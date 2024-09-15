@@ -41,17 +41,6 @@ def load_user(user_id):
 # Route: Home page (only accessible if logged in)
 @app.route('/')
 def home():
-    # print(session['username'])
-    # if not current_user.is_authenticated:
-    #         return redirect(url_for('login'))
-    # return render_template('index.html')
-    # if session.get('logged_in'):
-    #     # User is authenticated, render protected page
-    #     return render_template('index.html')
-    # else:
-    #     # User is not authenticated, redirect to login page
-    #     return redirect(url_for('login'))
-    # if session['email']:
     if "email" not in session:
         return render_template('index.html')
     
@@ -71,9 +60,6 @@ def register():
         password = request.form['password']
         confirm_password = request.form['confirm_password']
 
-        # Hash the password before storing it in the database
-        # hashed_password = generate_password_hash(password, method='sha256')
-        # Check if passwords match
         if password != confirm_password:
             error = 'Passwords do not match!', 'danger'
             # return redirect(url_for('register'))
