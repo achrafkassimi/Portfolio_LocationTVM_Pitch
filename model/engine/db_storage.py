@@ -7,6 +7,7 @@ from model.BaseMachine import Base
 from model.Scooter import Scooter
 from model.Motor import Motor
 from model.Bike import Bike
+from model.user import User
 # from model.CalendarDate import CalendarDate
 from model.Reservation import Reservation
 from model.Customer import Customer
@@ -18,7 +19,7 @@ from sqlalchemy.orm import scoped_session, sessionmaker
 # from sqlalchemy import select, update, delete, values
 
 
-classes = {"Scooter": Scooter, "Motor": Motor, "Bike": Bike,"Reservation": Reservation, "Customer": Customer}
+classes = {"Scooter": Scooter, "Motor": Motor, "Bike": Bike,"Reservation": Reservation, "Customer": Customer, "User": User}
 
 class DBStorage:
     """
@@ -105,13 +106,36 @@ class DBStorage:
         # all_cls = self.all(cls)
 
         # Query the database for the object by `id`
-        obj = self.__session.query(cls).get(id)  # Directly query the object by ID
+        try:
+            # Use filter_by to find the object by its ID field
+            obj = self.__session.query(cls).filter_by(id=id).first()
+            return obj  # Return the object if found
+        except Exception as e:
+            print(f"Error retrieving {cls.__name__} with ID {id}: {e}")
         
-        if obj:
-            # Convert the object to a dictionary, excluding private attributes
-            # obj_dict = {key: value for key, value in vars(obj).items() if not key.startswith('_')}
-            return obj  # Return the dictionary of key-value pairs
-        return None  # Return None if the object is not found
+        return None
+
+    def get_user(self, cls, email):
+        """
+        Returns the object based on the class name and its ID, or
+        None if not found
+        """
+
+        if cls not in classes.values(): # classes.keys()
+            print(cls)
+            # print(classes.keys())
+            # print(classes.values())
+            return None
+        # l'problem hna hwa ana entre c'est un String and for query is a class
+        # Query the database for the object by `id`
+        try:
+            # Use filter_by to find the object by its ID field
+            obj = self.__session.query(cls).filter_by(email=email).first()
+            return obj  # Return the object if found
+        except Exception as e:
+            print(f"Error retrieving {cls.__name__} with ID {email}: {e}")
+        
+        return None
 
     def count(self, cls=None):
         """

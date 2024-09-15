@@ -14,7 +14,7 @@ class Reservation(BaseMachine, Base):
 
     # id = Column(Integer, primary_key=True, autoincrement=True)
     customer_id = Column(String(60), ForeignKey('customer.id'), nullable=False)
-    # machine_id = Column(String(60), ForeignKey('machines.id'), nullable=False)
+    user_id = Column(String(60), ForeignKey('user.id'), nullable=False)
     bike_id = Column(String(60), ForeignKey('bike.id'), nullable=True)
     motor_id = Column(String(60), ForeignKey('motor.id'), nullable=True)
     scooter_id = Column(String(60), ForeignKey('scooter.id'), nullable=True)
@@ -23,6 +23,7 @@ class Reservation(BaseMachine, Base):
     prix = Column(Integer, nullable=False)
 
     customer = relationship("Customer", back_populates="reservation")
+    user = relationship("User", back_populates="reservation")
     # machine = relationship("BaseMachine", back_populates="reservation")
     bike = relationship('Bike', back_populates='reservation')
     motor = relationship('Motor', back_populates='reservation')

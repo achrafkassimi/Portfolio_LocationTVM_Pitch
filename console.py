@@ -13,6 +13,7 @@ from model.Reservation import Reservation
 from model.Scooter import Scooter
 from model.Motor import Motor
 from model.Bike import Bike
+from model.user import User
 from model.Customer import Customer
 # from sqlalchemy.orm import sessionmaker
 
@@ -23,14 +24,15 @@ class LocationTVM_Command(cmd.Cmd):
     classes
     """
     prompt = "(Location_TVM) "
-    valid_classes = ["Scooter", "Motor", "Bike", "Reservation", "Customer"]
+    valid_classes = ["Scooter", "Motor", "Bike", "Reservation", "Customer", "User"]
     # Create a registry to map table names to model classes
     model_registry = {
         'Bike': Bike,
         'Motor': Motor,
         'Customer': Customer,
         'Scooter': Scooter,
-        'Reservation': Reservation
+        'Reservation': Reservation,
+        'User': User
     }
 
     def emptyline(self):
@@ -331,7 +333,7 @@ class LocationTVM_Command(cmd.Cmd):
         if len(commands) == 0:
             for key, _ in objects.items():
                 count += 1
-            print("for all class count = ",count)
+            print("for all class count = ", count)
         elif commands[0] not in self.valid_classes:
             print("** class doesn't exist **")
         else:
