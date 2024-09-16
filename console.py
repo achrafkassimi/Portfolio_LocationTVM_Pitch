@@ -8,31 +8,35 @@ import shlex
 import re
 import ast
 import model
+from model import Admin
+from model import Machine
+from model import Person
 from model.__init__ import storage
 from model.Reservation import Reservation
 from model.Scooter import Scooter
 from model.Motor import Motor
 from model.Bike import Bike
-from model.user import User
+from model.User import User
 from model.Customer import Customer
-# from sqlalchemy.orm import sessionmaker
 
 class LocationTVM_Command(cmd.Cmd):
     """
     Attributes LocationTVM_Command console class
-    prompt 
-    classes
+    prompt classes
     """
     prompt = "(Location_TVM) "
-    valid_classes = ["Scooter", "Motor", "Bike", "Reservation", "Customer", "User"]
+    valid_classes = ["Machine", "Person", "Scooter", "Motor", "Bike", "Reservation", "Customer", "User", "Admin"]
     # Create a registry to map table names to model classes
-    model_registry = {
-        'Bike': Bike,
-        'Motor': Motor,
-        'Customer': Customer,
-        'Scooter': Scooter,
-        'Reservation': Reservation,
-        'User': User
+    classes = {
+    "Person": Person,
+    "Machine": Machine,
+    "Reservation": Reservation,
+    "Scooter": Scooter,
+    "Motor": Motor,
+    "Bike": Bike,
+    "Customer": Customer,
+    "User": User,
+    "Admin": Admin,
     }
 
     def emptyline(self):

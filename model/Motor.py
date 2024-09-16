@@ -1,44 +1,38 @@
 #!/usr/bin/python3
 """
-Defines the User class.
+Defines the Motor class.
 """
-from model.BaseMachine import BaseMachine, Base
-# from sqlalchemy import Column, String, Boolean
-from sqlalchemy import create_engine, Column, Integer, String, Date, Boolean, ForeignKey
-from sqlalchemy.orm import relationship
+from model.Machine import Machine
+from sqlalchemy import Column, ForeignKey, String, Boolean
 
 
 
-class Motor(BaseMachine,Base):
+class Motor(Machine):
     """
     Represent a Motor.
 
     Attributes:
-        name (str): The name of the Motor.
-        code_model (str): The code_model of the Motor.
-        Speed_max (str): The Speed_max of the Motor.
-        Puissance (str): The Puissance of the Motor.
-        detail (str): The detail of the Motor.
-        img = ??
+
     """
     __tablename__ = 'motor'
-    # id = Column(String(60), ForeignKey('machines.id'), primary_key=True)
-    name = Column(String(128), nullable=False)
-    code_model = Column(String(128), nullable=False)
-    Speed_max = Column(String(128), nullable=False)
-    Puissance = Column(String(128), nullable=False)
+    id = Column(String(60), ForeignKey('machine.id'), primary_key=True)
+    name_motor = Column(String(128), nullable=False)
+    image_path = Column(String(255), nullable=True)  # Store the file path of the uploaded image
+    maximal_moto = Column(String(128), nullable=False)
+    batteries  = Column(String(128), nullable=False)
+    speed_max = Column(String(128), nullable=False)
+    autonomic = Column(String(128), nullable=False)
+    charger = Column(String(128), nullable=False)
+    temps_charger =  Column(String(128), nullable=False)
+    charge_max = Column(String(128), nullable=False)
+
     detail = Column(String(128), nullable=False)
     reserved = Column(Boolean, default=False)
-    # available_dates = Column(String(60), unique=False)  # Store available dates as a JSON string
-    # __mapper_args__ = {
-    #     'polymorphic_identity': 'motor',
-    # }
 
-    # machine = relationship("BaseMachine", back_populates="motors")
-    reservation = relationship("Reservation", back_populates="motor")
-
-    
-    # image = ??
+    __mapper_args__ = {
+        'polymorphic_identity': 'motor',
+        'inherit_condition': (id == Machine.id)
+    }
 
     def __init__(self, *args, **kwargs):
         """initializes User"""
