@@ -53,7 +53,7 @@ def register():
 
     if "email" in session:
         return redirect(url_for('home'))
-    
+
     if request.method == 'POST':
         email = request.form['email']
         username = request.form['full_name']
