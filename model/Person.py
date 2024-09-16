@@ -15,7 +15,7 @@ class Person(BaseModel, Base):
     __tablename__ = 'person'
     username = Column(String(50), unique=True)
     email = Column(String(50), unique=True)
-    type = Column(String(50))  
+    type = Column(String(50))
     
     __mapper_args__ = {
         'polymorphic_identity': 'person',

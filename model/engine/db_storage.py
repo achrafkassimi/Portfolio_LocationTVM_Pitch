@@ -119,6 +119,28 @@ class DBStorage:
             print(f"Error retrieving {cls.__name__} with ID {id}: {e}")
         
         return None
+    
+    def get_personBy_id(self, cls, email):
+        """
+        Returns the object based on the class name and its ID, or
+        None if not found
+        """
+
+        if cls not in classes.values(): # classes.keys()
+            print(cls)
+            # print(classes.keys())
+            # print(classes.values())
+            return None
+        # l'problem hna hwa ana entre c'est un String and for query is a class
+        # Query the database for the object by `id`
+        try:
+            # Use filter_by to find the object by its ID field
+            obj = self.__session.query(cls).filter_by(email=email).first()
+            return obj  # Return the object if found
+        except Exception as e:
+            print(f"Error retrieving {cls.__name__} with ID {email}: {e}")
+        
+        return None
 
     def count(self, cls=None):
         """

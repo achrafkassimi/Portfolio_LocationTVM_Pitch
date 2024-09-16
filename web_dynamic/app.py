@@ -1,15 +1,15 @@
 #!/usr/bin/python3
 """ Starts a Flash Web Application """
 
+import os
 from model.__init__ import storage
-from model.user import User
-# The Session instance is not used for direct access, you should always use flask.session
+from model.User import User
+from model.Person import Person
 from flask_session import Session
 from flask import Flask, render_template, redirect, url_for, request, flash, session
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, login_user, login_required, logout_user, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
-# from model.engine.db_storage import DBStorage
 
 
 # storage = DBStorage()
@@ -19,6 +19,14 @@ app = Flask(__name__)
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
 app.secret_key = 'text_only_transcript'
+# Path to the upload folder
+UPLOAD_FOLDER = os.path.join(os.getcwd(), 'uploads')
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+# Ensure the 'uploads' folder exists
+if not os.path.exists(UPLOAD_FOLDER):
+    os.makedirs(UPLOAD_FOLDER)
+app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024  # Limit max upload size to 16 MB
+app.config['ALLOWED_EXTENSIONS'] = {'png', 'jpg', 'jpeg', 'gif'}
 Session(app)
 
 # Flask-Login setup
@@ -31,11 +39,15 @@ def close_db(error):
     """ Remove the current SQLAlchemy Session """
     storage.close()
 
-# # User loader for Flask-Login
+# Check if file has an allowed extension
+def allowed_file(filename):
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in app.config['ALLOWED_EXTENSIONS']
+
+# User loader for Flask-Login
 @login_manager.user_loader
 def load_user(user_id):
     # return User.query.get(int(user_id))
-    return storage.get_user(User, user_id)
+    return storage.get(User, user_id)
 
 
 # Route: Home page (only accessible if logged in)
@@ -44,8 +56,11 @@ def home():
     if "email" not in session:
         return render_template('index.html')
     
-    user = storage.get_user(User, session['email'])
-    return render_template('index.html', user=user)
+    person = storage.get_personBy_id(Person, session['email'])
+    print(person)
+    user = storage.get(User, person.id)
+    print(user)
+    return render_template('index.html', user=user, person=person)
 
 # Route: Register new users
 @app.route('/register', methods=['GET', 'POST'])
@@ -55,32 +70,67 @@ def register():
         return redirect(url_for('home'))
 
     if request.method == 'POST':
-        email = request.form['email']
-        username = request.form['full_name']
-        password = request.form['password']
-        confirm_password = request.form['confirm_password']
+        # Retrieve form data
+        file = request.files.get('image_path')
+        # print(file)
+        filename = None
+        if file:
+            filename = file.filename
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+
+        username = request.form.get('username')
+        email = request.form.get('email')
+        first_name = request.form.get('first_name')
+        last_name = request.form.get('last_name')
+        phone_number = request.form.get('phone_number')
+        cin = request.form.get('cin')
+        address = request.form.get('address')
+        city = request.form.get('city')
+        gender = request.form.get('gender')
+        password = request.form.get('password')
+        confirm_password = request.form.get('confirm_password')
 
         if password != confirm_password:
             error = 'Passwords do not match!', 'danger'
+            # flash('Passwords do not match!', 'danger')
             # return redirect(url_for('register'))
-            return render_template('register.html', error=error)
+            return render_template('register.html', error = error)
         
+        # Hash the password
+        # hashed_password = generate_password_hash(password, method='pbkdf2:sha256')
 
         # Check if the email already exists
-        user = storage.get_user(User, email)
+        user = storage.get(User, email)
 
         if user:
             error = 'Email address already exists'
             # return redirect(url_for('register'))
-            return render_template('register.html', error=error)
+            return render_template('register.html', error = error)
 
-        # Create a new user and add to the database
-        new_user = User(email=email, username=username, password=password)
-        storage.new(new_user)
-        storage.save()
+        # Create a new user
+        new_user = User(
+            image_path = filename,
+            username=username,
+            email=email,
+            first_name=first_name,
+            last_name=last_name,
+            Num_tel=phone_number,
+            cin=cin,
+            address=address,
+            city=city,
+            gender=gender,
+            password=password
+        )
+        # Add user to the database
+        try:
+            storage.new(new_user)
+            storage.save()
+            flash('Registration successful!', 'success')
+            return redirect(url_for('login'))
+        except Exception as e:
+            error = f'An error occurred: {str(e)}', 'danger'
+            return render_template('register.html', error = error)
 
-        print('Registration successful! Please log in.')
-        return redirect(url_for('login'))
 
     return render_template('register.html')
 
@@ -94,43 +144,42 @@ def login():
     if request.method == 'POST':
         email = request.form['email']
         password = request.form['password']
-        print(email, password)
+        
+        # print(email, password)
 
         # Check if the user exists
-        user = storage.get_user(User, email) # you need to fix ths function == is
-        # print(type(user))
+        person = storage.get_personBy_id(Person, email)
+        print(person)
+        user = storage.get(User, person.id)
+        print(user)
+
 
         # Verify the password
-        # if user and check_password_hash(user.password, password):
-        if user and user.password == password:
+        if person and user and user.password == password:
             # login_user(user)
             
             # Store user info in Flask-Session
             session['logged_in'] = True
-            session['email'] = user.email
+            session['email'] = person.email
             # print(session)
-
-            print('Login successful!')
+            flash('You have successfully logged in.', 'success')
+            # print('Login successful!')
             return redirect(url_for('home'))
         else:
             error = 'Invalid email or password. Please try again.'
-            print('Invalid email or password. Please try again.')
+            # print('Invalid email or password. Please try again.')
             return render_template('login.html', error=error)
     
     return render_template('login.html')
 
 # Route: Logout user
-@app.route('/logout') # @login_required
+@app.route('/logout')
 def logout():
     # Clear the session when the user logs out
     session.pop('email',None)
     session.clear()
 
-    # session['user_id'] = None
-    # session['username'] = None
-
-    # logout_user()
-    print('You have been logged out.')
+    flash('You have been logged out.', 'success')
     return redirect(url_for('home'))
 
 if __name__ == '__main__':

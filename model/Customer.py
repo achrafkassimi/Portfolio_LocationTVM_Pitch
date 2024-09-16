@@ -21,6 +21,7 @@ class Customer(Person):
     CIN = Column(String(60), unique=True, nullable=False)
     address = Column(String(128), nullable=False)
     ville = Column(String(60), nullable=False)
+    Gender = Column(String(60), nullable=False)
     password = Column(String(100), nullable=False)
 
     __mapper_args__ = {

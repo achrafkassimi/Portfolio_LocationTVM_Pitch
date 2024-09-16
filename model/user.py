@@ -17,9 +17,10 @@ class User(Person):
     first_name = Column(String(60), nullable=False)
     last_name = Column(String(60), nullable=False)
     Num_tel = Column(String(60), nullable=False)
-    CIN = Column(String(60), unique=True, nullable=False)
+    cin = Column(String(60), unique=True, nullable=False)
     address = Column(String(128), nullable=False)
-    ville = Column(String(60), nullable=False)
+    city = Column(String(60), nullable=False)
+    gender = Column(String(60), nullable=False)
     password = Column(String(100), nullable=False)
 
     __mapper_args__ = {
