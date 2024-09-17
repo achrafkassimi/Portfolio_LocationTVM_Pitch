@@ -66,7 +66,7 @@ def home():
     # user = storage.get(User, person.id)
     # print(user)
 
-    return render_template('index.html', machines=c, person=person)
+    return render_template('index.html', machines=machines_by_type, person=person)
 
 # Route: Register new users
 @app.route('/register', methods=['GET', 'POST'])
