@@ -10,6 +10,8 @@ class Machine(BaseModel, Base):
     """
     Represent a Machine.
     Attributes:
+        model (str): Unique model name.
+        type (str): Type of the machine (e.g., 'bike', 'scooter', 'motor').
     """
     __tablename__ = 'machine'
     model = Column(String(50), unique=True)

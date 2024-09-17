@@ -120,6 +120,41 @@ class DBStorage:
         
         return None
     
+    def get_machine_all(self):
+        """
+        Returns all object machine on the classes name 
+        None if not found
+        """
+        try:
+            all_machines = self.__session.query(Machine).all()
+            # Check if machines exist
+            if not all_machines:
+                print("No machines found.")
+                return []
+            
+            # Group machines by type
+            machines_by_type = {
+                'scooters': [],
+                'bikes': [],
+                'motors': []
+            }
+
+            # Loop through all machines and classify them by type
+            for machine in all_machines:
+                if isinstance(machine, Scooter):
+                    machines_by_type['scooters'].append(machine)
+                elif isinstance(machine, Bike):
+                    machines_by_type['bikes'].append(machine)
+                elif isinstance(machine, Motor):  # Assuming Motor class exists
+                    machines_by_type['motors'].append(machine)
+
+            # Return the grouped dictionary
+            return machines_by_type
+        except Exception as e:
+            print(f"Error retrieving machines: {e}")
+            return []
+        
+    
     def get_personBy_id(self, cls, email):
         """
         Returns the object based on the class name and its ID, or

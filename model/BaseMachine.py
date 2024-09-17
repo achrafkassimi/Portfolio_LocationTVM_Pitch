@@ -8,33 +8,17 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import Column, DateTime, String, Boolean
 import model
 from sqlalchemy.orm import relationship
-# from model.BaseMachine import Base
-
-
-
-# from os import getenv
 
 time = "%Y-%m-%dT%H:%M:%S.%f"
 Base = declarative_base()
-#Base
+
 class BaseMachine():
     """
         A base class for (T-V-M) models in our location_TVM clone
     """
-    # __tablename__ = 'machines'
     id = Column(String(60), primary_key=True)
     created_at = Column(DateTime, default=datetime.utcnow())
     updated_at = Column(DateTime, default=datetime.utcnow())
-    # reserved = Column(Boolean, default=False)
-    # __mapper_args__ = {
-    #     'polymorphic_identity': 'machines'
-    # }
-    # Relationships to specific types of machines
-    # bikes = relationship("Bike", back_populates="machine") # , uselist=False, cascade="all, delete-orphan"
-    # motors = relationship("Motor", back_populates="machine")
-    # scooters = relationship("Scooter", back_populates="machine")
-    # reservation = relationship("Reservation", back_populates="machine")
-
 
     def __init__(self, *args, **kwargs):
         """
@@ -68,9 +52,7 @@ class BaseMachine():
         """
         Updates updated_at with current time when instance is changed
         """
-        # from model import storage
         self.updated_at = datetime.now()
-        # print("test")
         model.storage.new(self)
         model.storage.save()
 

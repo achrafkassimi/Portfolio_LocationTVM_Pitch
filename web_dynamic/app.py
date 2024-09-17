@@ -1,19 +1,16 @@
 #!/usr/bin/python3
-""" Starts a Flash Web Application """
-
+"""
+Starts a Flash Web Application
+"""
 import os
 from model.__init__ import storage
 from model.User import User
 from model.Person import Person
 from flask_session import Session
-from flask import Flask, render_template, redirect, url_for, request, flash, session
+from flask import Flask, render_template, redirect, send_from_directory, url_for, request, flash, session
 from flask_sqlalchemy import SQLAlchemy
-from flask_login import LoginManager, login_user, login_required, logout_user, current_user
-from werkzeug.security import generate_password_hash, check_password_hash
+from flask_login import LoginManager 
 
-
-# storage = DBStorage()
-# storage.reload()
 
 app = Flask(__name__)
 app.config["SESSION_PERMANENT"] = False
@@ -43,6 +40,11 @@ def close_db(error):
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in app.config['ALLOWED_EXTENSIONS']
 
+@app.route('/uploads/<filename>')
+def uploaded_file(filename):
+    return send_from_directory(UPLOAD_FOLDER, filename)
+
+
 # User loader for Flask-Login
 @login_manager.user_loader
 def load_user(user_id):
@@ -53,14 +55,18 @@ def load_user(user_id):
 # Route: Home page (only accessible if logged in)
 @app.route('/')
 def home():
+
+    machines_by_type = storage.get_machine_all()
+
     if "email" not in session:
-        return render_template('index.html')
-    
+        return render_template('index.html', machines=machines_by_type)
+
     person = storage.get_personBy_id(Person, session['email'])
     print(person)
-    user = storage.get(User, person.id)
-    print(user)
-    return render_template('index.html', user=user, person=person)
+    # user = storage.get(User, person.id)
+    # print(user)
+
+    return render_template('index.html', machines=c, person=person)
 
 # Route: Register new users
 @app.route('/register', methods=['GET', 'POST'])
@@ -92,8 +98,7 @@ def register():
 
         if password != confirm_password:
             error = 'Passwords do not match!', 'danger'
-            # flash('Passwords do not match!', 'danger')
-            # return redirect(url_for('register'))
+            flash('Passwords do not match!', 'danger')
             return render_template('register.html', error = error)
         
         # Hash the password
@@ -167,7 +172,6 @@ def login():
             return redirect(url_for('home'))
         else:
             error = 'Invalid email or password. Please try again.'
-            # print('Invalid email or password. Please try again.')
             return render_template('login.html', error=error)
     
     return render_template('login.html')

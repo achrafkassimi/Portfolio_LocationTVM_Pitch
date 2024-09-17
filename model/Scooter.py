@@ -11,6 +11,17 @@ class Scooter(Machine):
     Represent a Scooter.
 
     Attributes:
+        id (str): Unique identifier.
+        name_scooter (str): Name of the scooter.
+        image_path (str): Path to the image of the scooter.
+        engine (str): Details about the engine.
+        batteries (str): Battery details.
+        amperes (str): Amperage details.
+        temps_charger (str): Charging time.
+        speed_max (str): Maximum speed.
+        autonomic (str): Range of the scooter.
+        detail (str): Additional details.
+        reserved (bool): Reservation status.
     
     """
     __tablename__ = 'scooter'

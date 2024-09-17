@@ -95,48 +95,42 @@ class LocationTVM_Command(cmd.Cmd):
     def do_create(self, arg):
         """
         add new Customer | Bike | Scooter | Motor
-                Usage: create <class_name> parameter1=".." parameter2=".."  ...
-            example 'Customer': create Customer fname=".." email=".."
-            example 'Bike':     create  Bike	 name=".."	code_model=".."	Speed_max=".."	Puissance=".."	detail=".."	|| d'not use ths parameter 'id' 'created_at' 'updated_at' 'reserved'
-            example 'Scooter':  create  Scooter  name=".."	code_model=".."	Speed_max=".."	Puissance=".."	detail=".."	|| d'not use ths parameter 'id' 'created_at' 'updated_at' 'reserved'
-            example 'Motor':    create  Motor    name=".."	code_model=".."	Speed_max=".."	Puissance=".."	detail=".."	|| d'not use ths parameter 'id' 'created_at' 'updated_at' 'reserved'
+            Usage: create <class_name> parameter1=".." parameter2=".."  ...
         """
         try:
-            class_name = arg.split(" ")[0]
-            # print(class_name)
-            if len(class_name) == 0:
-                print("** class name missing **")
+            # Split the input to get the class name and the rest of the command
+            command_parts = arg.split(" ", 1)  # Split into class_name and params
+            if len(command_parts) < 2:
+                print("** class name or parameters missing **")
                 return
+
+            class_name = command_parts[0]
+            params_str = command_parts[1]
+
             if class_name and class_name not in self.valid_classes:
                 print("** class doesn't exist **")
                 return
-
-            kwargs = {}
-            commands = arg.split(" ")
-            for i in range(1, len(commands)):
-                key = commands[i].split("=")[0]
-                value = commands[i].split("=")[1]
-                # key, value = tuple(commands[i].split("="))
-                if value.startswith('"'):
-                    value = value.strip('"').replace("_", " ")
-                else:
-                    try:
-                        value = eval(value)
-                    except (SyntaxError, NameError):
-                        continue
-                kwargs[key] = value
-            # print(kwargs)
-
-            if kwargs == {}:
-                new_instance = eval(class_name)()
-            else:
-                new_instance = eval(class_name)(**kwargs)
+            
+            # Regular expression to match key-value pairs like key="value" or key=value
+            pattern = r'(\w+)=["\']?([^"\']+)["\']?'
+            matches = re.findall(pattern, params_str)
+            
+            # Construct the kwargs dictionary from the parsed matches
+            kwargs = {key: value.replace("_", " ") for key, value in matches}
+            print(kwargs)
+            if not kwargs:
+                print("** no parameters provided **")
+                return
+            
+            # Instantiate the class with the parsed arguments
+            new_instance = eval(class_name)(**kwargs)
+            
+            # Save the new instance to storage
             storage.new(new_instance)
-            # print(new_instance)
             storage.save()
 
-        except ValueError:
-            print(ValueError)
+        except ValueError as e:
+            print(f"Error: {e}")
             return
 
 
