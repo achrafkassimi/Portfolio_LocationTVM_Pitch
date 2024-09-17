@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contactez-nous - Location Moto</title>
+    <title>Tarifs et Prix - Location Moto Maroc</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
@@ -11,26 +11,45 @@
             font-family: Arial, sans-serif;
             background-color: #f8f9fa;
         }
-        .contact-header {
+        .pricing-header {
             background-color: #007bff;
             color: white;
             padding: 2rem 0;
             text-align: center;
         }
-        .contact-header h1 {
+        .pricing-header h1 {
             margin: 0;
             font-size: 2.5rem;
         }
-        .contact-section {
+        .pricing-section {
             margin-top: 2rem;
             margin-bottom: 4rem;
         }
-        .contact-section .icon {
-            font-size: 1.5rem;
-            margin-right: 0.5rem;
+        .pricing-table {
+            margin-bottom: 2rem;
         }
-        .form-section {
-            margin-top: 2rem;
+        .pricing-table h3 {
+            background-color: #007bff;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+            margin-bottom: 0;
+        }
+        .pricing-table table {
+            margin-bottom: 0;
+            border: 1px solid #dee2e6;
+        }
+        .pricing-table th,
+        .pricing-table td {
+            text-align: center;
+            padding: 0.75rem;
+            border-bottom: 1px solid #dee2e6;
+        }
+        .image-section img {
+            width: 100%;
+            max-height: 400px;
+            object-fit: cover;
+            margin-bottom: 2rem;
         }
         .footer {
             background-color: #343a40;
@@ -44,25 +63,10 @@
         .footer a:hover {
             text-decoration: underline;
         }
-        .add_divi_icon li:before {
-        content: "\e052";
-        font-family: ETmodules;
-        font-size: 1em;
-        color: green;
-        position: relative;
-        margin-right: 5px;
-        }
-
-        .add_divi_icon li {
-        list-style-type: none;
-        }
-        .thumb {
-        width: 250px;
-        height: auto; /* if the image is square, this will be 100px automatically*/
-        }
     </style>
 </head>
 <body>
+
 
 
     <!-- Navbar -->
@@ -120,120 +124,123 @@
             </div>
         </div>
     </nav>
-       
-        <!-- Header -->
-    <header class="contact-header">
-    
-    <div class="container">
-        <h1>Contactez-nous</h1>
-    </div>
 
+
+
+    <!-- Header -->
+    <header class="pricing-header">
+        <div class="container">
+            <h1>Tarifs et Prix de Location Moto au Maroc</h1>
+        </div>
     </header>
 
-    <!-- Contact Information Section -->
-    <section class="contact-section container ">
-        <div class="card-group">
-            <div class="card">
-              <img src="../static/image/196255.png" class="card-img-top mx-auto thumb" alt="..." >
-              <!-- <span class='et-pb-icon' style='font-size: 33px; color: red;'>&#xe087;</span> -->
-              <div class="card-body">
-                <h5 class="card-title" style="text-align: center;">Bureau</h5>
-                <p class="card-text" style="text-align: center;">9k4 Rue Annajd Villa n° 6, Hay Riad / Rabat.</p>
-              </div>
-              
-            </div>
-
-            <div class="card">
-                <img src="../static/image/944602.png" class="card-img-top mx-auto thumb" alt="...">
-                <div class="card-body">
-                  <h5 class="card-title" style="text-align: center;">Point de retrait</h5>
-                  <p class="card-text" style="text-align: center;">Rue ben slimane Roudani, Agdal / Rabat</p>
-                </div>
-                
-            </div>
-
-            <div class="card">
-              <img src="../static/image/944602.png" class="card-img-top mx-auto thumb" alt="...">
-              <div class="card-body">
-                <h5 class="card-title" style="text-align: center;">Point de retrait</h5>
-                <p class="card-text" style="text-align: center;">Gare de train ONCF Casa Port / Casablanca</p>
-              </div>
-              
-            </div>
-
-            <div class="card">
-              <img src="../static/image/12930906.png" class="card-img-top mx-auto thumb" alt="...">
-              <div class="card-body">
-                <h5 class="card-title" style="text-align: center;">Coordonnées</h5>
-                <p class="card-text" style="text-align: center;">+212-6-32-469-571 contact@location-moto.ma</p>
-              </div>
-              
-            </div>
-
-          </div>
-
+    <!-- Image Section -->
+    <section class="image-section container mt-4">
+        <img src="../static/image/pedro-pereira-pplGVkdKQbY-unsplash.jpg" alt="Moto Rental Image" class="rounded">
     </section>
 
-    <!-- Contact Form Section -->
-    <section class="form-section container">
-        <h2>Formulaire de contact</h2>
-        <form>
-            <div class="mb-3">
-                <label for="usertype" class="form-label">Vous êtes ? <span class="text-danger">(Nécessaire)</span></label>
-                <select class="form-select" id="usertype" required>
-                    <option selected disabled>Choisissez...</option>
-                    <option>Un particulier</option>
-                    <option>Un professionnel</option>
-                </select>
-            </div>
-            
-            <div class="mb-3">
-                <label for="firstName" class="form-label">Votre nom <span class="text-danger">(Nécessaire)</span></label>
-                <div class="row">
-                    <div class="col-md-6">
-                        <input type="text" class="form-control" id="firstName" placeholder="Prénom" required>
-                    </div>
-                    <div class="col-md-6">
-                        <input type="text" class="form-control" id="lastName" placeholder="Nom" required>
-                    </div>
-                </div>
-            </div>
+    <!-- Pricing Section -->
+    <section class="pricing-section container">
+        <!-- Pricing Table 1: Scooters -->
+        <div class="pricing-table">
+            <h3>Location Scooters</h3>
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>Modèle</th>
+                        <th>Prix par jour</th>
+                        <th>Prix 3 jours</th>
+                        <th>Prix 7 jours</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Scooter 50cc</td>
+                        <td>150 MAD</td>
+                        <td>400 MAD</td>
+                        <td>900 MAD</td>
+                    </tr>
+                    <tr>
+                        <td>Scooter 125cc</td>
+                        <td>200 MAD</td>
+                        <td>500 MAD</td>
+                        <td>1200 MAD</td>
+                    </tr>
+                    <tr>
+                        <td>Scooter 300cc</td>
+                        <td>300 MAD</td>
+                        <td>800 MAD</td>
+                        <td>1800 MAD</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
 
-            <div class="mb-3">
-                <label for="phoneNumber" class="form-label">Numéro téléphone <span class="text-danger">(Nécessaire)</span></label>
-                <input type="tel" class="form-control" id="phoneNumber" placeholder="+212-6-32-469-571" required>
-            </div>
+        <!-- Pricing Table 2: Motos -->
+        <div class="pricing-table">
+            <h3>Location Motos</h3>
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>Modèle</th>
+                        <th>Prix par jour</th>
+                        <th>Prix 3 jours</th>
+                        <th>Prix 7 jours</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Moto 250cc</td>
+                        <td>400 MAD</td>
+                        <td>1100 MAD</td>
+                        <td>2600 MAD</td>
+                    </tr>
+                    <tr>
+                        <td>Moto 500cc</td>
+                        <td>600 MAD</td>
+                        <td>1600 MAD</td>
+                        <td>3800 MAD</td>
+                    </tr>
+                    <tr>
+                        <td>Moto 700cc</td>
+                        <td>800 MAD</td>
+                        <td>2200 MAD</td>
+                        <td>5000 MAD</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
 
-            <div class="mb-3">
-                <label for="address" class="form-label">Votre adresse</label>
-                <input type="text" class="form-control" id="address" placeholder="Adresse postale">
-            </div>
-            
-            <div class="mb-3">
-                <label for="city" class="form-label">Ville</label>
-                <input type="text" class="form-control" id="city" placeholder="Ville">
-            </div>
-
-            <div class="mb-3">
-                <label for="email" class="form-label">Votre adresse e-mail <span class="text-danger">(Nécessaire)</span></label>
-                <input type="email" class="form-control" id="email" placeholder="Adresse e-mail" required>
-            </div>
-
-            <div class="mb-3">
-                <label for="confirmEmail" class="form-label">Confirmer adresse e-mail <span class="text-danger">(Nécessaire)</span></label>
-                <input type="email" class="form-control" id="confirmEmail" placeholder="Confirmer adresse e-mail" required>
-            </div>
-
-            <div class="mb-3">
-                <label for="comments" class="form-label">Commentaire ou demande particulière ?</label>
-                <textarea class="form-control" id="comments" rows="5" placeholder="N'hésitez pas à nous contacter pour toutes questions ou demandes."></textarea>
-            </div>
-
-            <button type="submit" class="btn btn-primary">Envoyer</button>
-        </form>
+        <!-- Pricing Table 3: Quads -->
+        <div class="pricing-table">
+            <h3>Location Quads</h3>
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>Modèle</th>
+                        <th>Prix par jour</th>
+                        <th>Prix 3 jours</th>
+                        <th>Prix 7 jours</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Quad 250cc</td>
+                        <td>500 MAD</td>
+                        <td>1300 MAD</td>
+                        <td>3000 MAD</td>
+                    </tr>
+                    <tr>
+                        <td>Quad 400cc</td>
+                        <td>700 MAD</td>
+                        <td>1800 MAD</td>
+                        <td>4300 MAD</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </section>
 
-    <br><br><br><br>
     <!-- Section 5: Useful Links and Contact Info -->
     <footer class="py-5 bg-dark text-white">
         <div class="container">
@@ -284,7 +291,6 @@
             <p>&copy; 2024 My Brand | All rights reserved</p>
         </div>
     </footer>
-
 
     <!-- Bootstrap JS and Popper.js -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
