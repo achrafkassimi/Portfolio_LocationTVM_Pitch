@@ -3,12 +3,13 @@
 Starts a Flash Web Application
 """
 import os
+from model.Machine import Machine
 from model.__init__ import storage
 from model.User import User
 from model.Person import Person
 from flask_session import Session
 from flask import Flask, render_template, redirect, send_from_directory, url_for, request, flash, session
-from flask_sqlalchemy import SQLAlchemy
+# from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager 
 
 
@@ -31,10 +32,10 @@ login_manager = LoginManager()
 login_manager.init_app(app)
 # login_manager.login_view = 'login'
 
-@app.teardown_appcontext
-def close_db(error):
-    """ Remove the current SQLAlchemy Session """
-    storage.close()
+# @app.teardown_appcontext
+# def close_db(error):
+#     """ Remove the current SQLAlchemy Session """
+#     storage.close()
 
 # Check if file has an allowed extension
 def allowed_file(filename):
@@ -50,7 +51,6 @@ def uploaded_file(filename):
 def load_user(user_id):
     # return User.query.get(int(user_id))
     return storage.get(User, user_id)
-
 
 # Route: Home page (only accessible if logged in)
 @app.route('/')
@@ -100,9 +100,6 @@ def register():
             error = 'Passwords do not match!', 'danger'
             flash('Passwords do not match!', 'danger')
             return render_template('register.html', error = error)
-        
-        # Hash the password
-        # hashed_password = generate_password_hash(password, method='pbkdf2:sha256')
 
         # Check if the email already exists
         user = storage.get(User, email)
@@ -185,6 +182,30 @@ def logout():
 
     flash('You have been logged out.', 'success')
     return redirect(url_for('home'))
+
+@app.route('/reserve/<string:machine_id>')
+def reserve(machine_id):
+    try:
+        # Fetch the machine by ID
+        # machine = session.query(Machine).get(machine_id)
+        machine = storage.get(Machine, machine_id)
+        if not machine:
+            return "Machine not found", 404
+
+        # Render reservation page or perform reservation logic
+        return render_template('reserve.html', machine=machine)
+
+    except Exception as e:
+        return f"Error retrieving machine: {e}"
+
+@app.route('/faq')
+def faq():
+    return render_template('faq.html')
+
+@app.route('/contact')
+def contact():
+    return render_template('contact.html')
+
 
 if __name__ == '__main__':
     app.run(debug=True)

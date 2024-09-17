@@ -35,8 +35,8 @@
                     <li class="nav-item"><a class="nav-link" href="#">Reservation</a></li>
                     <li class="nav-item"><a class="nav-link" href="#">Rates</a></li>
                     <li class="nav-item"><a class="nav-link" href="#">About</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">FAQ</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for('contact') }}">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for('faq') }}">FAQ</a></li>
                 </ul>
             </div>
 
@@ -210,7 +210,7 @@
                             {% endif %}                            <div class="card-body">
                                 <h5 class="card-title">{{ bike.name_bike }}</h5>
                                 <p class="card-text">{{ bike.model }}</p>
-                                <a href="#" class="btn btn-primary">Reserved Now</a>
+                                <a href="{{ url_for('reserve', machine_id=bike.id) }}" class="btn btn-primary">Reserved Now</a>
                             </div>
                         </div>
                     </div>
@@ -231,7 +231,7 @@
                             {% endif %}                            <div class="card-body">
                                 <h5 class="card-title">{{ scooter.name_scooter }}</h5>
                                 <p class="card-text">{{ scooter.model }}</p>
-                                <a href="#" class="btn btn-primary">Reserved Now</a>
+                                <a href="{{ url_for('reserve', machine_id=scooter.id) }}" class="btn btn-primary">Reserved Now</a>
                             </div>
                         </div>
                     </div>
