@@ -305,16 +305,29 @@ def faq():
     if "email" not in session:
         return render_template('faq.html')
     
-    person = storage.get_personBy_id(Person, session['email'])
+    person = storage.get_personBy_id(User, session['email'])
     # print(person)
     return render_template('faq.html', person=person)
+
+@app.route('/product_all')
+def product_all():
+
+    machines_by_type = storage.get_all_machine()
+    print(machines_by_type)
+
+    if "email" not in session:
+        return render_template('machine_list.html', machines=machines_by_type)
+    
+    person = storage.get_personBy_id(User, session['email'])
+
+    return render_template('machine_list.html', person=person, machines=machines_by_type)
 
 @app.route('/contact')
 def contact():
     if "email" not in session:
         return render_template('contact.html')
     
-    person = storage.get_personBy_id(Person, session['email'])
+    person = storage.get_personBy_id(User, session['email'])
     print(person)
     return render_template('contact.html', person=person)
 
@@ -323,7 +336,7 @@ def rates():
     if "email" not in session:
         return render_template('rates.html')
     
-    person = storage.get_personBy_id(Person, session['email'])
+    person = storage.get_personBy_id(User, session['email'])
     print(person)
     return render_template('rates.html', person=person)
 
@@ -332,7 +345,7 @@ def about():
     if "email" not in session:
         return render_template('about.html')
     
-    person = storage.get_personBy_id(Person, session['email'])
+    person = storage.get_personBy_id(User, session['email'])
     print(person)
     return render_template('about.html', person=person)
 

@@ -85,57 +85,36 @@
     </nav>
 
 
-    <!-- FAQ Section -->
     <br><br>
-    <section class="faq-container container py-5">
-        <div class="accordion" id="faqAccordion">
 
-            <!-- FAQ Item 1 -->
-            <div class="accordion-item">
-                <h2 class="accordion-header" id="headingOne">
-                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                        Comment puis-je louer une moto au Maroc ?
-                    </button>
-                </h2>
-                <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#faqAccordion">
-                    <div class="accordion-body">
-                        Vous pouvez louer une moto en ligne en choisissant votre véhicule préféré, en remplissant le formulaire de réservation et en effectuant le paiement en ligne ou à la livraison.
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Liste des Scooters, Bikes et Motors</h1>
+        
+        <!-- Machine Cards -->
+        <div class="row g-4">
+            {% for machine in machines %}
+                <div class="col-lg-4 col-md-6">
+                    <div class="card h-100 shadow-sm">
+                        <!-- Machine Image -->
+                        {% if machine.image_path %}
+                            <img src="{{ url_for('uploaded_file', filename=machine.image_path) }}" class="card-img-top" alt="{{ machine.name_scooter or machine.name_bike or machine.name_motor }}">
+                        {% else %}
+                            <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="Placeholder Image">
+                        {% endif %}
+                        
+                        <div class="card-body">
+                            <!-- Machine Name -->
+                            <h5 class="card-title">{{ machine.name_scooter or machine.name_bike or machine.name_motor }}</h5>
+                            
+                            <!-- Reserve Button -->
+                            <a href="{{ url_for('reserve', machine_id=machine.id) }}" class="btn btn-primary">Réserver</a>
+                        </div>
                     </div>
                 </div>
-            </div>
-
-            <!-- FAQ Item 2 -->
-            <div class="accordion-item">
-                <h2 class="accordion-header" id="headingTwo">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                        Quels documents dois-je fournir pour louer une moto ?
-                    </button>
-                </h2>
-                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#faqAccordion">
-                    <div class="accordion-body">
-                        Vous devez fournir une pièce d'identité valide, un permis de conduire, et une carte de crédit ou des moyens de paiement acceptés par l'agence.
-                    </div>
-                </div>
-            </div>
-
-            <!-- FAQ Item 3 -->
-            <div class="accordion-item">
-                <h2 class="accordion-header" id="headingThree">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                        Y a-t-il des options de livraison disponibles ?
-                    </button>
-                </h2>
-                <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#faqAccordion">
-                    <div class="accordion-body">
-                        Oui, nous offrons la livraison à domicile ou sur le lieu de votre choix moyennant des frais supplémentaires.
-                    </div>
-                </div>
-            </div>
-
-            <!-- Add more FAQ items as needed -->
-            
+            {% endfor %}
         </div>
-    </section>
+    </div>
+
 
 
 

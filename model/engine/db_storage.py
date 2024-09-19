@@ -154,7 +154,24 @@ class DBStorage:
             print(f"Error retrieving machines: {e}")
             return []
         
-    
+    def get_all_machine(self):
+        """
+        Returns all object machine on the classes name 
+        None if not found
+        """
+        try:
+            all_machines = self.__session.query(Machine).all()
+            # Check if machines exist
+            if not all_machines:
+                print("No machines found.")
+                return []
+
+            # Return the grouped dictionary
+            return all_machines
+        except Exception as e:
+            print(f"Error retrieving machines: {e}")
+            return []
+
     def get_personBy_id(self, cls, email):
         """
         Returns the object based on the class name and its ID, or
