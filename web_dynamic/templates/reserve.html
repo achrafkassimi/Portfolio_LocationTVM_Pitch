@@ -5,37 +5,238 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reserve Machine</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .custom-image-size {
+            width: 450px;
+            height: 400px;
+            object-fit: cover; /* Makes sure the image doesn't get distorted */
+        }
+    </style>
 </head>
 <body>
-    <div class="container mt-4">
-        <h1>Reserve {{ machine.name_scooter or machine.name_bike or machine.name_motor }}</h1>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+
+            <!-- Logo -->
+            <a class="navbar-brand" href="{{ url_for('home') }}">
+                <img src="{{ url_for('static', filename='image/logo.png') }}" alt="Logo" width="200">
+            </a>
+
+            <!-- Toggler for Mobile View -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Centered Navigation Links -->
+            <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for('home') }}">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Reservation</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for('rates') }}">Rates</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for('about') }}">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for('contact') }}">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for('faq') }}">FAQ</a></li>
+                </ul>
+            </div>
+
+            <!-- Right-aligned User Section -->
+            <div class="d-flex">
+                {% block content %}
+                {% if session.get('email') %}
+                <div class="dropdown">
+                    <!-- <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> -->
+                        <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
+                                <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0m4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4m-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10s-3.516.68-4.168 1.332c-.678.678-.83 1.418-.832 1.664z"></path>
+                            </svg>
+                            <strong>{{ person.username }}
+                        </button>
+                    <!-- </a> -->
+                    <ul class="dropdown-menu">
+                        <li><span class="dropdown-item"><strong><a href="#" >Profile</a></strong></span></li>
+                        <li><span class="dropdown-item">Email: <strong>{{ person.email }}</strong></span></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a href="{{ url_for('logout') }}" class="btn btn-outline-danger ms-3">Logout</a></li>
+                    </ul>
+                </div>
+                {% else %}
+                    <!-- Login/Register buttons if the user is not logged in -->
+                    <a href="{{ url_for('login') }}" class="btn btn-outline-primary me-2">Login</a>
+                    <a href="{{ url_for('register') }}" class="btn btn-primary">Register</a>
+                {% endif %}
+                {% endblock %}
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4 py-5">
+        <h1><p class="fs-1 text-center">Réservation en ligne</p></h1>
+        <p class="fs-2 text-center">City: Rabat, Casablanca, Mohammadia, Kénitra, Témara, Salé, Bouznika, Skhirat et régions</p>
+        <br><br>
+        <h2>Reserve {{ machine.name_scooter or machine.name_bike or machine.name_motor }}</h2>
 
         <div class="card">
             {% if machine.image_path %}
-                <img src="{{ url_for('uploaded_file', filename=machine.image_path) }}" class="card-img-top" alt="{{ machine.name_scooter or machine.name_bike or machine.name_motor }}">
+                <img src="{{ url_for('uploaded_file', filename=machine.image_path) }}" class="custom-image-size card-img-top mx-auto d-block" alt="{{ machine.name_scooter or machine.name_bike or machine.name_motor }}">
             {% else %}
                 <img src="https://via.placeholder.com/150" class="card-img-top" alt="Placeholder Image">
             {% endif %}
             <div class="card-body">
                 <h5 class="card-title">{{ machine.name_scooter or machine.name_bike or machine.name_motor }}</h5>
-                <p class="card-text"><strong>Model:</strong> {{ machine.model }}<br>
-                <strong>Engine:</strong> {{ machine.engine }}<br>
-                <strong>Batteries:</strong> {{ machine.batteries }}<br>
-                <strong>Speed Max:</strong> {{ machine.speed_max }}<br>
-                <strong>Autonomy:</strong> {{ machine.autonomic }}<br>
-                <strong>Details:</strong> {{ machine.detail }}</p>
-                
-                <!-- Form or additional information for reserving the machine -->
-                <form action="/reserve_action/{{ machine.id }}" method="post">
-                    <!-- Form fields for reservation, e.g., date, user details -->
-                    <button type="submit" class="btn btn-primary">Confirm Reservation</button>
-                </form>
+                <p class="card-text">
+                    <strong>Model:</strong> {{ machine.model }}<br>
+                    <strong>Engine:</strong> {{ machine.engine }}<br>
+                    <strong>Batteries:</strong> {{ machine.batteries }}<br>
+                    <strong>Speed Max:</strong> {{ machine.speed_max }}<br>
+                    <strong>Autonomy:</strong> {{ machine.autonomic }}<br>
+                    <strong>Details:</strong> {{ machine.detail }}
+                </p>
+
+                {% if session.get('email') %}
+                    <!-- Form for authenticated users to reserve -->
+                    <form action="/reserve_action/{{ machine.id }}" method="post">
+                        <div class="form-group">
+                            <label for="days">Nombre de jours *</label>
+                            <input type="number" class="form-control" id="days" name="days" min="1" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="start_date">Date départ *</label>
+                            <input type="date" class="form-control" id="start_date" name="start_date" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="end_date">Date retour *</label>
+                            <input type="date" class="form-control" id="end_date" name="end_date" required>
+                        </div>
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="terms" name="terms" required>
+                            <label class="form-check-label" for="terms">J’accepte les conditions générales de vente.</label>
+                        </div>
+                        <button type="submit" class="btn btn-primary mt-3">Confirm Reservation</button>
+                    </form>
+                {% else %}
+                    <!-- Reservation form for unauthenticated users -->
+                    <h4>Formulaire de réservation en ligne</h4>
+                    <form action="/reserve_action/{{ machine.id }}" method="post">
+                        <div class="form-group">
+                            <label for="first_name">First Name *</label>
+                            <input type="text" class="form-control" id="first_name" name="first_name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="last_name">Last Name *</label>
+                            <input type="text" class="form-control" id="last_name" name="last_name" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="gender" class="form-label">Gender *</label>
+                            <select class="form-select" name="gender" id="gender" required>
+                                <option value="" disabled selected>Select your gender</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number *</label>
+                            <input type="tel" class="form-control" id="phone" name="phone" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="id_number">CIN *</label>
+                            <input type="text" class="form-control" id="id_number" name="id_number" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="address">Adresse *</label>
+                            <input type="text" class="form-control" id="address" name="address" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="city">City *</label>
+                            <input type="text" class="form-control" id="city" name="city" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="days">Nombre de jours *</label>
+                            <input type="number" class="form-control" id="days" name="days" min="1" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="start_date">Date départ *</label>
+                            <input type="date" class="form-control" id="start_date" name="start_date" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="end_date">Date retour *</label>
+                            <input type="date" class="form-control" id="end_date" name="end_date" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Adresse e-mail *</label>
+                            <input type="email" class="form-control" id="email" name="email" required>
+                        </div>
+                        
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="terms" name="terms" required>
+                            <label class="form-check-label" for="terms">J’accepte les conditions générales de vente.</label>
+                        </div>
+                        <button type="submit" class="btn btn-primary mt-3">Réserver</button>
+                    </form>
+                {% endif %}
             </div>
         </div>
     </div>
 
+
+        <!-- Section 5: Useful Links and Contact Info -->
+        <footer class="py-5 bg-dark text-white">
+            <div class="container">
+                <div class="row">
+                    <!-- About Us Column -->
+                    <div class="col-md-3">
+                        <h5>About Us</h5>
+                        <ul class="list-unstyled">
+                            <li>Who We Are</li>
+                            <li>FAQs</li>
+                            <li>Pricing & Reservation</li>
+                            <li>Contact Form</li>
+                        </ul>
+                    </div>
+                    <!-- Useful Links Column -->
+                    <div class="col-md-3">
+                        <h5>Useful Links</h5>
+                        <ul class="list-unstyled">
+                            <li>Terms and Conditions</li>
+                            <li>Site Map</li>
+                            <li>Blog</li>
+                        </ul>
+                    </div>
+                    <!-- Support Column -->
+                    <div class="col-md-3">
+                        <h5>Support</h5>
+                        <ul class="list-unstyled">
+                            <li>Customer Support</li>
+                            <li>Client Area</li>
+                        </ul>
+                    </div>
+                    <!-- Contact Column -->
+                    <div class="col-md-3">
+                        <h5>Contact</h5>
+                        <p>+212-632-469-571</p>
+                        <p>9k4 Rue Annajd Villa n° 6, Hay Riad/Rabat<br>
+                           Rue slimane Roudani, Agdal/Rabat<br>
+                           Gare train ONCF Casa Port</p>
+                        <a href="mailto:contact@location-mtv.ma" class="text-white">contact@location-mtv.ma</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-light py-3">
+        <div class="container text-center">
+            <p>&copy; 2024 My Brand | All rights reserved</p>
+        </div>
+    </footer>
+
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="{{ url_for('static', filename='js/js.js') }}"></script>
+
 </body>
 </html>

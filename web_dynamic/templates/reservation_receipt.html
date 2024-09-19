@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reservation Receipt</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center">Reçu de Réservation</h1>
+        <hr>
+
+        <!-- Reservation Information -->
+        <h2>Détails de la Réservation</h2>
+        <p><strong>Numéro de Réservation:</strong> {{ reservation.id }}</p>
+        <p><strong>Date de Réservation:</strong> {{ reservation.start_date.strftime('%d/%m/%Y') }} au {{ reservation.end_date.strftime('%d/%m/%Y') }}</p>
+        <p><strong>Prix total:</strong> {{ reservation.prix }}</p>
+
+        <!-- Machine Information -->
+        <h2>Informations sur la Machine</h2>
+        <p><strong>Nom de la Machine:</strong> {{ machine.name_scooter or machine.name_bike or machine.name_motor }}</p>
+        <p><strong>Modèle:</strong> {{ machine.model }}</p>
+        <p><strong>Moteur:</strong> {{ machine.engine }}</p>
+        <p><strong>Vitesse maximale:</strong> {{ machine.speed_max }} km/h</p>
+        <p><strong>Autonomie:</strong> {{ machine.autonomic }} km</p>
+        
+        <!-- User Information -->
+        <h2>Informations sur le Client</h2>
+        <p><strong>Nom:</strong> {{ user.first_name }} {{ user.last_name }}</p>
+        <p><strong>Numéro de téléphone:</strong> {{ user.phone }}</p>
+        <p><strong>Email:</strong> {{ user.email }}</p>
+        <p><strong>Adresse:</strong> {{ user.address }}, {{ user.city }}</p>
+
+        <!-- Additional Information -->
+        {% if reservation.comments %}
+            <h2>Commentaires</h2>
+            <p>{{ reservation.comments }}</p>
+        {% endif %}
+
+        <hr>
+        <p class="text-center">Merci d'avoir réservé chez nous!</p>
+    </div>
+
+    <footer class="text-center mt-5">
+        <p>&copy; 2024 Reservation System</p>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

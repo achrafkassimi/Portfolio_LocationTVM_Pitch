@@ -1,0 +1,120 @@
+<!DOCTYPE html> 
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reserve Machine</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+
+    
+    navbar
+    <h1> Réservation en ligne </h1>
+    city Rabat, Casablanca, Mohammadia, Kénitra, Témara, Salé, Bouznika, Skhirat et régions
+
+    <div class="container mt-4">
+        <h1>Reserve {{ machine.name_scooter or machine.name_bike or machine.name_motor }}</h1>
+
+        <div class="card">
+            {% if machine.image_path %}
+                <img src="{{ url_for('uploaded_file', filename=machine.image_path) }}" class="card-img-top" alt="{{ machine.name_scooter or machine.name_bike or machine.name_motor }}">
+            {% else %}
+                <img src="https://via.placeholder.com/150" class="card-img-top" alt="Placeholder Image">
+            {% endif %}
+            <div class="card-body">
+                <h5 class="card-title">{{ machine.name_scooter or machine.name_bike or machine.name_motor }}</h5>
+                <p class="card-text"><strong>Model:</strong> {{ machine.model }}<br>
+                <strong>Engine:</strong> {{ machine.engine }}<br>
+                <strong>Batteries:</strong> {{ machine.batteries }}<br>
+                <strong>Speed Max:</strong> {{ machine.speed_max }}<br>
+                <strong>Autonomy:</strong> {{ machine.autonomic }}<br>
+                <strong>Details:</strong> {{ machine.detail }}</p>
+                
+
+
+                if user connect 
+
+
+
+                <!-- Form or additional information for reserving the machine -->
+                <form action="/reserve_action/{{ machine.id }}" method="post">
+                    <!-- Form fields for reservation, e.g., date, user details -->
+                    <button type="submit" class="btn btn-primary">Confirm Reservation</button>
+                </form>
+
+
+
+
+                else 
+                formulaire 
+
+                "Formulaire de réservation en ligne
+                Votre nom
+                (Nécessaire)
+                Prénom
+                Nom
+                Numéro téléphone
+                (Nécessaire)
+                Séléctionner le document pour la réservation
+                (Nécessaire)
+                
+                Carte d'identité nationale
+                Veuillez saisir le numéro de carte d'identité nationale
+                Pour la création de votre contrat de location, nous vous prions de bien vouloir nous communiquer le numéro de votre carte d'identité nationale. Veuillez noter que le document original sera requis lors de la remise de la moto.
+                Votre adresse
+                Adresse postale
+                Ville
+                Combien de jours souhaitez vous louer la moto ?
+                Veuillez sélectionner le nombre de jours de location (Tarif dégresif selon le nombre de jours)
+                Nombre de jours
+                
+                Selectionner
+                Date départ :
+                (Nécessaire)
+                mm/jj/aaaa
+                MM slash JJ slash AAAA
+                Date retour :
+                (Nécessaire)
+                mm/jj/aaaa
+                MM slash JJ slash AAAAVotre adresse e-mail
+                Email Address
+                Confirm Email Address
+                Commentaire ou demande particulière ?
+                Veuillez préciser votre commentaire ou demande particulière
+                Vos commentaires/questions
+                (Nécessaire)
+                CGV
+                
+                J’accepte les conditions générales de vente.
+                "
+
+
+
+
+
+
+
+
+
+
+
+
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <footer></footer>
+
+
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

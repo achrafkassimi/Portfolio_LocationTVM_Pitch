@@ -13,16 +13,14 @@ class Customer(Person):
     """
     __tablename__ = 'customer'
     id = Column(String(60), ForeignKey('person.id'), primary_key=True)
-    image_path = Column(String(255), nullable=True)  # Store the file path of the uploaded image
-
+    email = Column(String(50), nullable=False)
     first_name = Column(String(60), nullable=False)
     last_name = Column(String(60), nullable=False)
-    Num_tel = Column(String(60), nullable=False)
-    CIN = Column(String(60), unique=True, nullable=False)
+    num_tel = Column(String(60), nullable=False)
+    cin = Column(String(60), nullable=False)
     address = Column(String(128), nullable=False)
-    ville = Column(String(60), nullable=False)
-    Gender = Column(String(60), nullable=False)
-    password = Column(String(100), nullable=False)
+    city = Column(String(60), nullable=False)
+    gender = Column(String(60), nullable=False)
 
     __mapper_args__ = {
         'polymorphic_identity': 'customer',

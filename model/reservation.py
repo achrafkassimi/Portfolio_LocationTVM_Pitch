@@ -13,8 +13,6 @@ class Reservation(BaseModel, Base):
     __tablename__ = 'reservation'
     person_id = Column(String(60), ForeignKey('person.id'), nullable=False)
     machine_id = Column(String(60), ForeignKey('machine.id'), nullable=False)
-    reservation_date = Column(DateTime, default=datetime.utcnow)
-
     start_date = Column(Date, nullable=False)
     end_date = Column(Date, nullable=False)
     prix = Column(Integer, nullable=False)

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Réservation Réussie</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center text-success">Votre Réservation a été Réussie!</h1>
+        <hr>
+
+        <div class="alert alert-success text-center" role="alert">
+            <h4 class="alert-heading">Merci {{ user.first_name }} {{ user.last_name }}!</h4>
+            <p>Votre réservation pour <strong>{{ machine.name_scooter or machine.name_bike or machine.name_motor }}</strong> a été confirmée.</p>
+            <hr>
+            <p class="mb-0">Numéro de Réservation: <strong>{{ reservation.id }}</strong></p>
+        </div>
+
+        <div class="card mt-4">
+            <div class="card-header">
+                Détails de la Réservation
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">Machine Réservée: {{ machine.name_scooter or machine.name_bike or machine.name_motor }}</h5>
+                <p class="card-text">
+                    <strong>Modèle:</strong> {{ machine.model }}<br>
+                    <strong>Date de Début:</strong> {{ reservation.start_date.strftime('%d/%m/%Y') }}<br>
+                    <strong>Date de Fin:</strong> {{ reservation.end_date.strftime('%d/%m/%Y') }}<br>
+                    <strong>Prix:</strong> {{ reservation.prix or "Aucun commentaire fourni." }}
+                </p>
+                <a href="{{ url_for('home') }}" class="btn btn-primary">Retour à l'accueil</a>
+            </div>
+        </div>
+
+        <div class="mt-4 text-center">
+            <a href="{{ url_for('generate_pdf', reservation_id=reservation.id) }}" class="btn btn-success">Télécharger le Reçu (PDF)</a>
+        </div>
+    </div>
+
+    <footer class="text-center mt-5">
+        <p>&copy; 2024 Reservation System. Tous droits réservés.</p>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

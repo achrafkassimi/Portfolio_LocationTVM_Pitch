@@ -14,8 +14,8 @@ class Admin(Person):
     __tablename__ = 'admin'
     full_name = Column(String(60), nullable=False)
     id = Column(String(60), ForeignKey('person.id'), primary_key=True)
+    email = Column(String(50), unique=True)
     image_path = Column(String(255), nullable=True)  # Store the file path of the uploaded image
-
     password = Column(String(100), nullable=False)
 
     __mapper_args__ = {
