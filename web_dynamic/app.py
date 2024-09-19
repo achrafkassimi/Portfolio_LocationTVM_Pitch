@@ -193,7 +193,7 @@ def reserve(machine_id):
         if "email" not in session:
             return render_template('reserve.html', machine=machine)
         
-        person = storage.get_personBy_id(Person, session['email'])
+        person = storage.get_personBy_id(User, session['email'])
         
         # Render reservation page or perform reservation logic
         return render_template('reserve.html', machine=machine, person=person)
