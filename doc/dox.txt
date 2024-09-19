@@ -16,3 +16,28 @@ adults and children over 12 years old 16, but also tourists. The 18-24 age group
 
 python -m web_dynamic.app
 pip freeze
+
+DROP DATABASE IF EXISTS tvm_dev_db;
+CREATE DATABASE IF NOT EXISTS tvm_dev_db CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+
+
+
+-Customer  table data:
+
+
+create Scooter model="Luqi Q3" name_scooter="Moto électrique Luqi Q3" image_path="scooter-electrique-q3-rouge.jpg" engine="2000W" batteries="48V 30Ah Amovible" amperes="test"  temps_charger="5 heures" speed_max="45km/h" autonomic="Possibilité jusqu à 70km* dépend du poids du conducteur, du type de parcours et de la charge du scooter" detail="test"
+
+create Scooter model="Luqi 2.0" name_scooter="Moto électrique Luqi 2.0" image_path="scooter-electrique-luqi2-jumpway-vert.jpg" engine="2000W" batteries="60V 25Ah Amovible" amperes="test" temps_charger="5 heures" speed_max="40km/h" autonomic="Possibilité jusqu'à 60km* dépend du poids du conducteur, du type de parcours et de la charge du scooter" detail="test"
+
+create Scooter model="Luqi 3.0" name_scooter="Moto électrique Luqi 3.0" image_path="scooter-electrique-luqi-3.jpg"  engine="2000W" batteries="60V 25Ah Amovible" amperes="test" temps_charger="5 heures" speed_max="40km/h" autonomic="Possibilité jusqu'à 60km* dépend du poids du conducteur, du type de parcours et de la charge du scooter" detail="test"
+
+create Scooter model="E125S" name_scooter="Scooter électrique E125S" image_path="eScooter-E125S_Ruby-Red-Glossy.jpg"  engine="2000W" batteries="48V 30Ah Amovible" amperes="test" temps_charger="5 heures" speed_max="45km/h" autonomic="Possibilité jusqu'à 70km* dépend du poids du conducteur, du type de parcours et de la charge du scooter" detail="test"
+
+
+create Bike model="KuKirin V3" name_bike="Vélo électrique KuKirin V3" image_path="v3-1.png" engine="350W" batteries="lithium 36V 15Ah" amperes="test" temps_charger="5 heures" speed_max="40km" autonomic="Longue Durée" detail="test"
+
+create Bike model="Sloggy" name_bike="Vélo électrique Sloggy" image_path="velo-electrique-Sloggy.jpg" engine="350W" batteries="lithium 36V 15Ah" amperes="test" temps_charger="5 heures" speed_max="40km" autonomic="Longue Durée" detail="test"
+
+create Bike model="Mahi LMTDR 13L" name_bike="Vélo électrique Mahi Mahi LMTDR 13L" image_path="Velo-electrique-enfants-Mahi-Mahi.jpg" engine="350W" batteries="lithium 36V 15Ah" amperes="test" temps_charger="5 heures" speed_max="40km" autonomic="Longue Durée" detail="test"
+
+create Bike model="Orca" name_bike="Vélo électrique Orca" image_path="velo-electrique-Orca.jpg" engine="350W" batteries="lithium 36V 15Ah" amperes="test" temps_charger="5 heures" speed_max="40km" autonomic="Longue Durée" detail="test"
