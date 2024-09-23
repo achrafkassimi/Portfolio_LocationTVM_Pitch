@@ -62,8 +62,6 @@ def home():
 
     person = storage.get_personBy_id(User, session['email'])
     print(person)
-    # user = storage.get(User, person.id)
-    # print(user)
 
     return render_template('index.html', machines=machines_by_type, person=person)
 
@@ -77,7 +75,7 @@ def register():
     if request.method == 'POST':
         # Retrieve form data
         file = request.files.get('image_path')
-        # print(file)
+        
         filename = None
         if file:
             filename = file.filename
@@ -105,7 +103,6 @@ def register():
 
         if user:
             error = 'Email address already exists'
-            # return redirect(url_for('register'))
             return render_template('register.html', error = error)
 
         # Create a new user
@@ -146,8 +143,6 @@ def login():
         email = request.form['email']
         password = request.form['password']
         
-        # print(email, password)
-
         # Check if the user exists
         person = storage.get_personBy_id(User, email)
         print(person)
@@ -155,14 +150,12 @@ def login():
 
         # Verify the password
         if person and person.password == password:
-            # login_user(user)
             
             # Store user info in Flask-Session
             session['logged_in'] = True
             session['email'] = person.email
-            # print(session)
             flash('You have successfully logged in.', 'success')
-            # print('Login successful!')
+
             return redirect(url_for('home'))
         else:
             error = 'Invalid email or password. Please try again.'
@@ -184,8 +177,6 @@ def logout():
 def reserve(machine_id):
     try:
         # Fetch the machine by ID
-        # machine = session.query(Machine).get(machine_id)
-
         machine = storage.get(Machine, machine_id)
         if not machine:
             return "Machine not found", 404
@@ -204,12 +195,9 @@ def reserve(machine_id):
 @app.route('/reserve_action/<string:machine_id>', methods=['POST'])
 def reserve_action(machine_id):
 
-    # machine = storage.get(Machine, machine_id)
-
     # If user is authenticated, use their ID
     if "email" in session:
         person = storage.get_personBy_id(User, session['email'])
-        # user = storage.get(User, person.id)
         user_id = person.id
     else:
         # User not authenticated, create a new user from the form input
@@ -221,13 +209,6 @@ def reserve_action(machine_id):
         city = request.form.get('city')
         email = request.form.get('email')
         gender = request.form.get('gender')
-        # print(gender)
-
-        # # Check if a user already exists with this email or id_number
-        # existing_user = User.query.filter_by(email=email).first()
-        # if existing_user:
-        #     flash('User already exists with this email. Please login.')
-        #     return redirect(url_for('login'))
 
         # Create new customer
         new_customer = Customer(first_name=first_name, last_name=last_name, num_tel=phone, 
@@ -261,22 +242,17 @@ def reserve_action(machine_id):
 def reservation_success(reservation_id):
     # Fetch the reservation details, including the machine and user information
     reaved = storage.get(Reservation, reservation_id)
-    # print(reaved)
-    # reservation = Reservation.query.get_or_404(reservation_id)
     machine = storage.get(Machine, reaved.machine_id)  # Assuming relationship exists between Reservation and Machine
-    # print(machine)
     user = storage.get(Person, reaved.person_id)  # Assuming relationship exists between Reservation and User
-    # print(user)
 
     # Render the reservation success template with reservation, machine, and user details
     return render_template('reservation_success.html', reservation=reaved, machine=machine, user=user)
 
 @app.route('/generate_pdf/<string:reservation_id>', methods=['GET'])
 def generate_pdf(reservation_id):
-    # Fetch the reservation details, including the machine and user information
     reaved = storage.get(Reservation, reservation_id)
-    machine = storage.get(Machine, reaved.machine_id)  # Assuming relationship exists between Reservation and Machine
-    user = storage.get(Person, reaved.person_id)  # Assuming relationship exists between Reservation and User
+    machine = storage.get(Machine, reaved.machine_id)
+    user = storage.get(Person, reaved.person_id)
 
     # Create the PDF in memory
     pdf_file = BytesIO()
@@ -306,7 +282,6 @@ def faq():
         return render_template('faq.html')
     
     person = storage.get_personBy_id(User, session['email'])
-    # print(person)
     return render_template('faq.html', person=person)
 
 @app.route('/product_all')
