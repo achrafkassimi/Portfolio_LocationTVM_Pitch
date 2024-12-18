@@ -36,23 +36,23 @@ kan9tar7o nkriw trottinette wla velo wla motor w ghadi ikon 3andna station khass
 
 I found that the chosen
 
-- project already exists with not detail and not explanation,
-  so for the friendlier it is necessary to detail & explanation and add more service to request with a good frontend
+- project already exists with no detail and no explanation,
+  so for the friendlier, it is necessary to detail & explain and add more service to request with a good frontend
   the services offered as:
 
 * presentation produit de location and service
-* simple reservation in web site
+* simple reservation on web site
 * admin to follow all
 * inscription USER
 * GPS suiver l'objet and save data
-* type contrat ??
-* notification user and admine
+* type contract??
+* notification user and admin
 * reservation pluseur produit in seul commend pour un group
-* add des abonnez
+* add des bonnes
 
 -- How have you had to change your plan to adapt to these unearthed challenges?
-in this case to modify the plan to adapt to these discovered challenges is to use the concept of MVP
--- Describe any unexpected non-technical challenges?
+in this case, to modify the plan to adapt to these discovered challenges is to use the concept of MVP
+-- Describe any unexpected non-technical challenges.
 designs (frontend) and user experience
 
 3. Collaboration/Communication
